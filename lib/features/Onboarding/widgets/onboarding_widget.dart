@@ -122,49 +122,49 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                   textStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
                   ),
-                  speed: const Duration(milliseconds: 200), // Reduce speed
+                  speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Whisk it away!',
                   textStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
                   ),
-                  speed: const Duration(milliseconds: 200), // Reduce speed
+                  speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Savor the flavor!',
                   textStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
                   ),
-                  speed: const Duration(milliseconds: 200), // Reduce speed
+                  speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Slice and dice!',
                   textStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
                   ),
-                  speed: const Duration(milliseconds: 200), // Reduce speed
+                  speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Cook with passion!',
                   textStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
                   ),
-                  speed: const Duration(milliseconds: 200), // Reduce speed
+                  speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Taste the magic!',
                   textStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
                   ),
-                  speed: const Duration(milliseconds: 200), // Reduce speed
+                  speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Spice it up!',
                   textStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
                   ),
-                  speed: const Duration(milliseconds: 200), // Reduce speed
+                  speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
               ],
             ),
