@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class MyTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFF8DC63F), // Adjusted primary color
-    backgroundColor: Color(0xFFFAFFE6), // Adjusted background color
+    primaryColor: Color(0xFF39B54A), // Updated primary color
+    backgroundColor: Color(0xFFFDFFF5), // Updated background color
     colorScheme: ColorScheme.light(
-      primary: Color(0xFF8DC63F), // Adjusted primary color
+      primary: Color(0xFF39B54A), // Updated primary color
       secondary: Color(0xFF293462),
-      background: Color(0xFFFAFFE6), // Adjusted background color
+      background: Color(0xFFFDFFF5), // Updated background color
     ),
     textTheme: TextTheme(
       headlineLarge: TextStyle(
@@ -28,7 +28,7 @@ class MyTheme {
       ),
     ),
     appBarTheme: AppBarTheme(
-      backgroundColor: Color(0xFF8DC63F), // Adjusted primary color
+      backgroundColor: Color(0xFF39B54A), // Updated primary color
     ),
     buttonTheme: ButtonThemeData(
       shape: RoundedRectangleBorder(
@@ -39,10 +39,10 @@ class MyTheme {
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF8DC63F), // Adjusted primary color
+    primaryColor: Color(0xFF39B54A), // Updated primary color
     backgroundColor: Color(0xFF001E00), // Adjusted background color
     colorScheme: ColorScheme.dark(
-      primary: Color(0xFF8DC63F), // Adjusted primary color
+      primary: Color(0xFF39B54A), // Updated primary color
       secondary: Color(0xFF293462),
     ),
     textTheme: TextTheme(
@@ -64,7 +64,7 @@ class MyTheme {
       ),
     ),
     appBarTheme: AppBarTheme(
-      backgroundColor: Color(0xFF8DC63F), // Adjusted primary color
+      backgroundColor: Color(0xFF39B54A), // Updated primary color
     ),
   );
 }

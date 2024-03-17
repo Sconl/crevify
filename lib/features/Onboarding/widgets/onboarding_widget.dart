@@ -35,7 +35,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: const Color.fromARGB(255, 0, 32, 0),
+      backgroundColor: Theme.of(context).backgroundColor, // Use theme background color
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -105,8 +105,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 14),
-              backgroundColor:
-                  Colors.green[900], // Changing background color to dark green
+              backgroundColor: Theme.of(context).primaryColor, // Use theme primary color
             ),
             child: const Text(
               'Get Started',
@@ -116,14 +115,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
               ),
             ),
           ),
-          const SizedBox(height: 36), // Adding space between the button and the text
-          const Text(
-            '#TeamLarusa',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 12,
-            ),
-          ),
+         
           const SizedBox(height: 40), // Adding additional space at the bottom
         ],
       ),
@@ -149,7 +141,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
           children: [
             const SizedBox(height: 100),
             SvgPicture.asset(
-              'assets/logos/CampusCrave_Logo_Vertical_Main_White.svg',
+              'assets/logos/crevify_logo_vertical_main_white.svg', // Updated logo path
               height: 160,
               width: 160,
               color: Colors.white,
