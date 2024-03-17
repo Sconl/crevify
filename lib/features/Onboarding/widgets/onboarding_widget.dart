@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../models/onboarding_model.dart';
-// Import your LoginPage widget
-// Import your SignupPage widget
 
 class OnboardingWidget extends StatefulWidget {
-  const OnboardingWidget({super.key});
+  const OnboardingWidget({Key? key});
 
   @override
   State<OnboardingWidget> createState() => _OnboardingWidgetState();
@@ -16,8 +15,6 @@ class OnboardingWidget extends StatefulWidget {
 
 class _OnboardingWidgetState extends State<OnboardingWidget> {
   late OnboardingModel _model;
-
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -34,8 +31,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: Theme.of(context).backgroundColor, // Use theme background color
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -97,35 +93,93 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
             ),
           ),
           const SizedBox(
-              height:
-                  36), // Adding space between the onboarding content and the button
+            height: 36,
+          ),
           ElevatedButton(
             onPressed: () async {
-              Navigator.pushNamed(context, '/login'); // Navigate to the login screen
+              Navigator.pushNamed(context, '/login');
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 14),
-              backgroundColor: Theme.of(context).primaryColor, // Use theme primary color
+              backgroundColor: Theme.of(context).primaryColor,
             ),
             child: const Text(
-              'Get Started',
+              'Ready, Set, Go!',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
               ),
             ),
           ),
-         
-          const SizedBox(height: 40), // Adding additional space at the bottom
+          const SizedBox(height: 36),
+          SizedBox(
+            height: 50,
+            child: AnimatedTextKit(
+              repeatForever: true,
+              animatedTexts: [
+                TyperAnimatedText(
+                  'Chop it up!',
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  speed: const Duration(milliseconds: 200), // Reduce speed
+                ),
+                TyperAnimatedText(
+                  'Whisk it away!',
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  speed: const Duration(milliseconds: 200), // Reduce speed
+                ),
+                TyperAnimatedText(
+                  'Savor the flavor!',
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  speed: const Duration(milliseconds: 200), // Reduce speed
+                ),
+                TyperAnimatedText(
+                  'Slice and dice!',
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  speed: const Duration(milliseconds: 200), // Reduce speed
+                ),
+                TyperAnimatedText(
+                  'Cook with passion!',
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  speed: const Duration(milliseconds: 200), // Reduce speed
+                ),
+                TyperAnimatedText(
+                  'Taste the magic!',
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  speed: const Duration(milliseconds: 200), // Reduce speed
+                ),
+                TyperAnimatedText(
+                  'Spice it up!',
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  speed: const Duration(milliseconds: 200), // Reduce speed
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
         ],
       ),
     );
   }
 
-  Widget _buildPage(
-      {required String imageUrl,
-      required String title,
-      required String subtitle}) {
+  Widget _buildPage({
+    required String imageUrl,
+    required String title,
+    required String subtitle,
+  }) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -141,7 +195,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
           children: [
             const SizedBox(height: 100),
             SvgPicture.asset(
-              'assets/logos/crevify_logo_vertical_main_white.svg', // Updated logo path
+              'assets/logos/crevify_logo_vertical_main_white.svg',
               height: 160,
               width: 160,
               color: Colors.white,
