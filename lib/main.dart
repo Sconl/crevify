@@ -7,19 +7,14 @@ import 'features/authentication/bloc/Auth_bloc/auth_bloc.dart';
 import 'features/authentication/bloc/Auth_bloc/auth_state.dart';
 import 'features/homepage/screens/home_page.dart'; 
 import 'features/Onboarding/widgets/onboarding_widget.dart'; 
-import 'features/Onboarding/widgets/splash_screen.dart'; 
+import 'features/splash_screen/screens/splash_screen.dart'; 
 import 'features/authentication/screens/login_page.dart'; // Import your LoginPage widget
 import 'features/authentication/screens/signup_page.dart'; // Comment out this line
+import './shared/theme/theme.dart'; // Import your theme.dart file
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized(); 
-  await Firebase.initializeApp(); 
-  runApp(
-    BlocProvider(
-      create: (context) => AuthBloc(AuthenticationService(FirebaseAuth.instance)),
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,16 +24,32 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Crevify',
+      theme: MediaQuery.platformBrightnessOf(context) == Brightness.dark ? MyTheme.darkTheme : MyTheme.lightTheme,
       initialRoute: '/',
       routes: {
-        '/': (context) => BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                if (state is AuthInitial) {
-                  return const SplashScreen();
-                } else if (state is AuthAuthenticated) {
-                  return HomePage(user: state.user); // Pass user to HomePage
+        '/': (context) => FutureBuilder(
+              future: Future.wait([
+                Firebase.initializeApp(),
+                Future.delayed(Duration(seconds: 10)),
+              ]),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return BlocProvider(
+                    create: (context) => AuthBloc(AuthenticationService(FirebaseAuth.instance)),
+                    child: BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        if (state is AuthInitial) {
+                          return SplashScreen();
+                        } else if (state is AuthAuthenticated) {
+                          return HomePage(user: state.user); // Pass user to HomePage
+                        } else {
+                          return OnboardingWidget();
+                        }
+                      },
+                    ),
+                  );
                 } else {
-                  return const OnboardingWidget();
+                  return SplashScreen();
                 }
               },
             ),

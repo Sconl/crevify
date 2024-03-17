@@ -11,7 +11,7 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomTheme.darkGreenColor,
+      backgroundColor: MyTheme.darkTheme.backgroundColor,
       body: BlocProvider(
         create: (context) => PassBloc(),
         child: SingleChildScrollView(
@@ -32,27 +32,20 @@ class SignupPage extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 10.0),
                     child: Text(
                       'Join Us!',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: MyTheme.darkTheme.textTheme.headlineLarge!,
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(height: 5.0),  // Reduce space
+                  SizedBox(height: 5.0), // Reduce space
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
                       'Create an account to start your journey with us.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                      ),
+                      style: MyTheme.darkTheme.textTheme.bodyText1!,
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(height: 4.0),  // Reduce space
+                  SizedBox(height: 4.0), // Reduce space
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
@@ -80,7 +73,8 @@ class SignupPage extends StatelessWidget {
                                     BlocProvider.of<PassBloc>(context).add(PasswordSubmitted());
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.zero, backgroundColor: CustomTheme.lightTheme.primaryColor,
+                                    padding: EdgeInsets.zero,
+                                    backgroundColor: MyTheme.lightTheme.primaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
@@ -99,24 +93,17 @@ class SignupPage extends StatelessWidget {
                           },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 10),
-                            backgroundColor: CustomTheme.lightTheme.primaryColor,
+                            backgroundColor: MyTheme.lightTheme.primaryColor,
                           ),
                           child: Text(
                             'Sign Up',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
+                            style: MyTheme.lightTheme.textTheme.button!,
                           ),
                         ),
                         SizedBox(height: 15.0),
                         Text(
                           'or',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: MyTheme.lightTheme.textTheme.button!.copyWith(fontSize: 18.0, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 15.0),
@@ -126,7 +113,7 @@ class SignupPage extends StatelessWidget {
                           },
                           style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 10),
-                            side: BorderSide(color: CustomTheme.lightTheme.primaryColor),
+                            side: BorderSide(color: MyTheme.lightTheme.primaryColor!),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -139,10 +126,7 @@ class SignupPage extends StatelessWidget {
                               SizedBox(width: 10.0),
                               Text(
                                 'Sign Up with Google',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
+                                style: MyTheme.lightTheme.textTheme.button!,
                               ),
                             ],
                           ),
@@ -160,15 +144,12 @@ class SignupPage extends StatelessWidget {
                       child: RichText(
                         text: TextSpan(
                           text: 'Already have an account? ',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: MyTheme.lightTheme.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
                           children: [
                             TextSpan(
                               text: 'Log In',
                               style: TextStyle(
-                                color: CustomTheme.lightTheme.primaryColor,
+                                color: MyTheme.lightTheme.primaryColor!,
                               ),
                             ),
                           ],
@@ -186,7 +167,7 @@ class SignupPage extends StatelessWidget {
                           Text(
                             'Powered By',
                             style: TextStyle(
-                              color: const Color.fromARGB(136, 255, 255, 255),
+                              color: MyTheme.darkTheme.textTheme.bodyText1!.color!.withOpacity(0.54),
                               fontSize: 9, // Make text slightly smaller
                             ),
                           ),
@@ -195,7 +176,7 @@ class SignupPage extends StatelessWidget {
                             'assets/logos/Ace_Cyber_Space_Logo_Horizontal_Full_Lockup_White.svg',
                             height: 35.0,
                             width: 105.0,
-                            color: const Color.fromARGB(155, 255, 255, 255), // Change color to white
+                            color: MyTheme.darkTheme.textTheme.bodyText1!.color!.withOpacity(0.87), // Change color to white
                           ),
                         ],
                       ),
@@ -213,17 +194,17 @@ class SignupPage extends StatelessWidget {
 
   Widget _buildInputField(String label) {
     return TextFormField(
-      style: TextStyle(color: Colors.white),
+      style: MyTheme.darkTheme.textTheme.bodyText1!,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.white, fontSize: 16.0), // Reduced font size
+        labelStyle: MyTheme.darkTheme.textTheme.bodyText1!.copyWith(color: MyTheme.darkTheme.textTheme.bodyText1!.color!.withOpacity(0.87), fontSize: 16.0), // Reduced font size
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: CustomTheme.lightTheme.primaryColor),
+          borderSide: BorderSide(color: MyTheme.lightTheme.primaryColor),
         ),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
-        isDense: true,  // Add this line to reduce the height of input fields
+        isDense: true, // Add this line to reduce the height of input fields
       ),
     );
   }
@@ -232,17 +213,17 @@ class SignupPage extends StatelessWidget {
     return Expanded(
       child: TextFormField(
         obscureText: true,
-        style: TextStyle(color: Colors.white),
+        style: MyTheme.darkTheme.textTheme.bodyText1!,
         decoration: InputDecoration(
           labelText: 'Password',
-          labelStyle: TextStyle(color: Colors.white, fontSize: 16.0), // Reduced font size
+          labelStyle: MyTheme.darkTheme.textTheme.bodyText1!.copyWith(color: MyTheme.darkTheme.textTheme.bodyText1!.color!.withOpacity(0.87), fontSize: 16.0), // Reduced font size
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: CustomTheme.lightTheme.primaryColor),
+            borderSide: BorderSide(color: MyTheme.lightTheme.primaryColor),
           ),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
-          isDense: true,  // Add this line to reduce the height of input fields
+          isDense: true, // Add this line to reduce the height of input fields
         ),
       ),
     );
