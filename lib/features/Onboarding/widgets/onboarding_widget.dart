@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:animated_text_kit/animated_text_kit.dart';
-
 import '../models/onboarding_model.dart';
+import '../../../shared/theme/theme.dart';
 
 class OnboardingWidget extends StatefulWidget {
   const OnboardingWidget({Key? key});
@@ -31,7 +31,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: MyTheme.lightTheme.backgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -76,14 +76,15 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                           curve: Curves.ease,
                         );
                       },
-                      effect: const smooth_page_indicator.ExpandingDotsEffect(
+                      effect:
+                          smooth_page_indicator.ExpandingDotsEffect(
                         expansionFactor: 4,
                         spacing: 8,
                         radius: 40,
                         dotWidth: 10,
                         dotHeight: 10,
                         dotColor: Color(0xFFD9D9D9),
-                        activeDotColor: Color.fromARGB(255, 0, 143, 0),
+                        activeDotColor: MyTheme.lightTheme.primaryColor,
                         paintStyle: PaintingStyle.fill,
                       ),
                     ),
@@ -101,7 +102,10 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 14),
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: MyTheme.lightTheme.primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
             ),
             child: const Text(
               'Ready, Set, Go!',
@@ -120,49 +124,49 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                 TyperAnimatedText(
                   'Chop it up!',
                   textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                    color: MyTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Whisk it away!',
                   textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                    color: MyTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Savor the flavor!',
                   textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                    color: MyTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Slice and dice!',
                   textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                    color: MyTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Cook with passion!',
                   textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                    color: MyTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Taste the magic!',
                   textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                    color: MyTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Spice it up!',
                   textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                    color: MyTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
@@ -204,12 +208,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
+              style: MyTheme.lightTheme.textTheme.headlineLarge,
             ),
             const SizedBox(height: 10),
             Padding(
@@ -217,11 +216,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
               child: Text(
                 subtitle,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontFamily: 'Poppins',
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
+                style: MyTheme.lightTheme.textTheme.bodyText1,
               ),
             ),
             const SizedBox(height: 20),
