@@ -30,11 +30,13 @@ class MyTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: Color(0xFF39B54A),
     ),
-    buttonTheme: ButtonThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Color(0xFF39B54A)), // Use primary color
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50), // Completely rounded edges
+        )),
       ),
-      buttonColor: Color(0xFFEF3300), // Updated button color
     ),
   );
 
@@ -67,11 +69,13 @@ class MyTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: Color(0xFF39B54A),
     ),
-    buttonTheme: ButtonThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Color(0xFF39B54A)), // Use primary color
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50), // Completely rounded edges
+        )),
       ),
-      buttonColor: Color(0xFFEF3300), // Updated button color
     ),
   );
 }

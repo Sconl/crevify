@@ -8,8 +8,8 @@ import 'features/authentication/bloc/Auth_bloc/auth_state.dart';
 import 'features/homepage/screens/home_page.dart'; 
 import 'features/Onboarding/widgets/onboarding_widget.dart'; 
 import 'features/splash_screen/screens/splash_screen.dart'; 
-import 'features/authentication/screens/login_page.dart'; // Import your LoginPage widget
-import 'features/authentication/screens/signup_page.dart'; // Comment out this line
+import 'features/authentication/screens/login_screen.dart'; // Import your LoginPage widget
+import 'features/authentication/screens/signup_screen.dart'; // Comment out this line
 import './shared/theme/theme.dart'; // Import your theme.dart file
 
 void main() {

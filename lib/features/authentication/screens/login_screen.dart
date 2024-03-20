@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:crevify/shared/widgets/appbar/custom_appbar.dart'; // Import custom_appbar.dart
 import 'package:crevify/shared/theme/theme.dart'; // Import your theme.dart file
 
 class LoginPage extends StatefulWidget {
@@ -62,13 +63,24 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        title: Text('Login'),
+      appBar: CustomAppBar(
+        height: 100, // Adjust height as needed
+        title: 'Login',
+        leadingWidgets: [
+          IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context), // Handle back button press
+          ),
+        ],
+        trailingWidgets: [
+          // Add any trailing widgets as needed (e.g., profile icon, menu icon)
+        ],
+        // Consider adding a custom shape using SShapeClipper if desired
       ),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.0),
           child: Form(
             key: _formKey,
             child: Column(
