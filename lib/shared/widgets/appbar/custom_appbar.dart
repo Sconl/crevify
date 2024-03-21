@@ -60,7 +60,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ),
                           // Centered title
                           Expanded(
-                            child: Center(child: Text(title, style: Theme.of(context).textTheme.headline6)),
+                            child: Center(child: Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19.0))), // Smaller size font and bold
                           ),
                           // Trailing widgets
                           Row(
