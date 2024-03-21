@@ -7,7 +7,7 @@ class MyTheme {
     backgroundColor: Color(0xFFFDFFF5),
     colorScheme: ColorScheme.light(
       primary: Color(0xFF39B54A),
-      secondary: Color(0xFFEF3300), // Updated secondary color
+      secondary: Color(0xFFEF3300),
       background: Color(0xFFFDFFF5),
     ),
     textTheme: TextTheme(
@@ -23,19 +23,31 @@ class MyTheme {
       button: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.bold,
-        color: Color(0xFFEF3300), // Updated button color
+        color: Colors.white, // Use white for all buttons
         fontFamily: 'Popins',
       ),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: Color(0xFF39B54A),
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(Colors.white), // Use white for text in TextButtons
+        backgroundColor: MaterialStateProperty.all(Colors.transparent), // No fill color
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Color(0xFF39B54A)), // Use primary color
-        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50), // Completely rounded edges
-        )),
+        backgroundColor: MaterialStateProperty.all(Color(0xFF39B54A)), // Use primary color for all ElevatedButtons
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0))), // Completely rounded edges
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        side: MaterialStateProperty.all(BorderSide(color: Color(0xFF39B54A))), // Use primary color for border
+        foregroundColor: MaterialStateProperty.all(Color(0xFF39B54A)), // Use primary color for text
+        backgroundColor: MaterialStateProperty.all(Colors.transparent), // No fill color
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0))), // Completely rounded edges
       ),
     ),
   );
@@ -46,7 +58,7 @@ class MyTheme {
     backgroundColor: Color(0xFF001E00),
     colorScheme: ColorScheme.dark(
       primary: Color(0xFF39B54A),
-      secondary: Color(0xFFEF3300), // Updated secondary color
+      secondary: Color(0xFFEF3300),
     ),
     textTheme: TextTheme(
       headlineLarge: TextStyle(
@@ -62,19 +74,31 @@ class MyTheme {
       button: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.bold,
-        color: Color(0xFFEF3300), // Updated button color
+        color: Colors.white, // Use white for all buttons
         fontFamily: 'Popins',
       ),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: Color(0xFF39B54A),
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(Colors.white), // Use white for text in TextButtons
+        backgroundColor: MaterialStateProperty.all(Colors.transparent), // No fill color
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Color(0xFF39B54A)), // Use primary color
-        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50), // Completely rounded edges
-        )),
+        backgroundColor: MaterialStateProperty.all(Color(0xFF39B54A)), // Use primary color for all ElevatedButtons
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0))), // Completely rounded edges
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        side: MaterialStateProperty.all(BorderSide(color: Color(0xFF39B54A))), // Use primary color for border
+        foregroundColor: MaterialStateProperty.all(Color(0xFF39B54A)), // Use primary color for text
+        backgroundColor: MaterialStateProperty.all(Colors.transparent), // No fill color
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0))), // Completely rounded edges
       ),
     ),
   );

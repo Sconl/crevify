@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shape_clipper/s_clipper.dart'; // Import SClipper
-import 'package:crevify/shared/theme/theme.dart';
+//import 'package:crevify/shared/theme/theme.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height; // Adjustable height for the AppBar
@@ -19,7 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.trailingWidgets = const [],
     this.customClipper,
     this.bottomPadding = 0.0,
-    this.topPadding = 5.0,
+    this.topPadding = 0.0,
   }) : super(key: key);
 
   @override

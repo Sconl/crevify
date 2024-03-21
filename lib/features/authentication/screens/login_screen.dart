@@ -64,109 +64,142 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        height: 100, // Adjust height as needed
-        title: 'Login',
-        leadingWidgets: [
-          IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context), // Handle back button press
-          ),
-        ],
-        trailingWidgets: [
-          // Add any trailing widgets as needed (e.g., profile icon, menu icon)
-        ],
-        // Consider adding a custom shape using SShapeClipper if desired
+        height: 90, // Adjust height as needed
+        title: 'Suit Up!', // Just the string
+        leadingWidgets: [],
+        trailingWidgets: [],
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.0),
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.085), // 80% of screen width
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                Image.asset('assets/logos/crevify_logo_vertical_main.webp'),
-                SizedBox(height: 20),
+                SizedBox(
+                  height: 100,
+                  child: Image.asset('assets/logos/crevify_iconmark_main.webp'),
+                ),
                 Text(
                   'Welcome Back!',
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 15),
                 Text(
                   'Ready to dive back into your journey? Let\'s get started!',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white, fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 20),
-                TextFormField(
-                  key: ValueKey('email'),
-                  validator: (value) {
-                    if (value!.isEmpty || !value.contains('@')) {
-                      return 'Please enter a valid email address.';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _email = value!;
-                  },
-                  decoration: InputDecoration(labelText: 'Email address'),
-                  keyboardType: TextInputType.emailAddress,
-                  textInputAction: TextInputAction.next,
-                ),
-                SizedBox(height: 12),
-                TextFormField(
-                  key: ValueKey('password'),
-                  validator: (value) {
-                    if (value!.isEmpty || value.length < 7) {
-                      return 'Password must be at least 7 characters long.';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _password = value!;
-                  },
-                  decoration: InputDecoration(labelText: 'Password'),
-                  obscureText: true,
-                  textInputAction: TextInputAction.done,
-                ),
-                SizedBox(height: 12),
-                ElevatedButton(
-                  onPressed: _trySubmit,
-                  child: Text('Login', style: Theme.of(context).textTheme.button),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                Container(
+                  height: 55, // Increased height by 10%
+                  child: TextFormField(
+                    key: ValueKey('email'),
+                    validator: (value) {
+                      if (value!.isEmpty || !value.contains('@')) {
+                        return 'Please enter a valid email address.';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _email = value!;
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Email address',
+                      filled: true,
+                      fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0), // Completely rounded edges
+                        borderSide: BorderSide.none, // No border
+                      ),
                     ),
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                  ),
+                ),
+                SizedBox(height: 15), // Increased space by 70%
+                Container(
+                  height: 55, // Increased height by 10%
+                  child: TextFormField(
+                    key: ValueKey('password'),
+                    validator: (value) {
+                      if (value!.isEmpty || value.length < 8) {
+                        return 'Password must be at least 8 characters long.';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _password = value!;
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      filled: true,
+                      fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0), // Completely rounded edges
+                        borderSide: BorderSide.none, // No border
+                      ),
+                    ),
+                    obscureText: true,
+                    textInputAction: TextInputAction.done,
+                  ),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.7, // 70% of screen width
+                  child: ElevatedButton(
+                    onPressed: _trySubmit,
+                    child: Text('Login', style: TextStyle(color: Colors.white)), // White label
                   ),
                 ),
                 SizedBox(height: 12),
-                ElevatedButton(
-                  onPressed: _signInWithGoogle,
-                  child: Text('Sign in with Google', style: Theme.of(context).textTheme.button),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.7, // 70% of screen width
+                  child: OutlinedButton(
+                    onPressed: _signInWithGoogle,
+                    child: Text('Sign in with Google'),
                   ),
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 4), // Reduced space by 50%
                 TextButton(
                   onPressed: () {
                     if (_email.isNotEmpty) {
                       _auth.sendPasswordResetEmail(email: _email);
                     }
                   },
-                  child: Text('Forgot password?'),
+                  child: Text('Forgot password?', style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14.0)), // Not bold and slightly smaller font size
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 0), // Reduced space by 50%
                 TextButton(
                   onPressed: () => Navigator.of(context).pushNamed('/signup'),
-                  child: Text('Don\'t have an account? Sign up'),
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Don\'t have an account? ',
+                      style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16.0), // Primary color and slightly larger font size
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Sign up',
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.secondary, fontSize: 16.0), // Bold, secondary color and slightly larger font size
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 SizedBox(height: 20),
-                SvgPicture.asset('assets/logos/ace_white.svg'),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: SizedBox(
+                    height: 42, // Increased size by 20%
+                    child: Opacity(
+                      opacity: 0.5, // Increased opacity to 50%
+                      child: SvgPicture.asset(
+                        'assets/logos/ace_white.svg',
+                        color: Theme.of(context).primaryColor, // Primary color
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
