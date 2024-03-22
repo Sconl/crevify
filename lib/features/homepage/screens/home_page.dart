@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        height: 150, // Adjust the height as needed
+        height: 80, // Adjust the height as needed
         title: 'Home Page',
       ),
       body: Center(

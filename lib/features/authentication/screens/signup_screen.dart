@@ -65,7 +65,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        height: 75, // Adjust height as needed
+        height: 80, // Adjust height as needed
         title: 'Power Up!', // Changed the string
         leadingWidgets: [],
         trailingWidgets: [],
