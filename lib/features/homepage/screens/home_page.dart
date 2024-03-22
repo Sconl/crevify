@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shape_clipper/s_clipper.dart'; // Import the SClipper
+import '../../../shared/widgets/appbar/custom_appbar.dart';
 
 class HomePage extends StatelessWidget {
   final User user;
@@ -9,8 +11,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
+      appBar: CustomAppBar(
+        height: 150, // Adjust the height as needed
+        title: 'Home Page',
       ),
       body: Center(
         child: Column(

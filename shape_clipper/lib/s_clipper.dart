@@ -14,9 +14,9 @@ class SClipper extends CustomClipper<Path> {
     Path path_0 = Path();
     path_0.moveTo(width, 0);
     path_0.lineTo(width, height);
-    path_0.cubicTo(width, height * 52.04 / 63.78, width * 181.78 / 191.3, height * 42.52 / 63.78, width * 170.04 / 191.3, height * 42.52 / 63.78);
-    path_0.lineTo(width * 21.26 / 191.3, height * 42.52 / 63.78);
-    path_0.cubicTo(width * 9.52 / 191.3, height * 42.52 / 63.78, 0, height * 33 / 63.78, 0, height * 21.26 / 63.78);
+    path_0.cubicTo(width, height * 48.86 / 60.6, width * 181.78 / 191.3, height * 51.31 / 60.6, width * 170.04 / 191.3, height * 51.31 / 60.6);
+    path_0.lineTo(width * 21.26 / 191.3, height * 51.31 / 60.6);
+    path_0.cubicTo(width * 9.52 / 191.3, height * 51.31 / 60.6, 0, height * 41.79 / 60.6, 0, height * 30.05 / 60.6);
     path_0.lineTo(0, 0);
     path_0.lineTo(width, 0);
     path_0.close();

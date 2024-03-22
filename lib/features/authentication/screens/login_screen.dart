@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        height: 90, // Adjust height as needed
+        height: 80, // Adjust height as needed
         title: 'Suit Up!', // Just the string
         leadingWidgets: [],
         trailingWidgets: [],

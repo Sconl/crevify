@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "477837912041",
-    "project_id": "crevify-83b45",
-    "storage_bucket": "crevify-83b45.appspot.com"
+    "project_number": "331797684652",
+    "project_id": "crevify-app",
+    "storage_bucket": "crevify-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:477837912041:android:552b772f009e157259cd78",
+        "mobilesdk_app_id": "1:331797684652:android:cba21b82d512550b9c5a09",
         "android_client_info": {
           "package_name": "com.example.crevify"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCAiWq8x9mVxQZtbicBUHXkmQeF5qEMCkM"
+          "current_key": "AIzaSyDeglp_WpL-RY5KJwFyPQ9OF5wJSuScId4"
         }
       ],
       "services": {

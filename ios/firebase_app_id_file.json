@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:477837912041:ios:3f1ca4ba02c70f1059cd78",
-  "FIREBASE_PROJECT_ID": "crevify-83b45",
-  "GCM_SENDER_ID": "477837912041"
+  "GOOGLE_APP_ID": "1:331797684652:ios:d4236926c90a4f2d9c5a09",
+  "FIREBASE_PROJECT_ID": "crevify-app",
+  "GCM_SENDER_ID": "331797684652"
 }

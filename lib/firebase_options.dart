@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBZACB_lxdI_XuxZIu7tL7m9L20c21TVFs',
-    appId: '1:477837912041:web:4dbf8b7255d15bdb59cd78',
-    messagingSenderId: '477837912041',
-    projectId: 'crevify-83b45',
-    authDomain: 'crevify-83b45.firebaseapp.com',
-    storageBucket: 'crevify-83b45.appspot.com',
-    measurementId: 'G-WQ95VVD9Y7',
+    apiKey: 'AIzaSyD5yePliFgNPks9caQ1lDYn_E71djhUgIE',
+    appId: '1:331797684652:web:1bf6673a0d70b3389c5a09',
+    messagingSenderId: '331797684652',
+    projectId: 'crevify-app',
+    authDomain: 'crevify-app.firebaseapp.com',
+    storageBucket: 'crevify-app.appspot.com',
+    measurementId: 'G-TFS3ZKDZZL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCAiWq8x9mVxQZtbicBUHXkmQeF5qEMCkM',
-    appId: '1:477837912041:android:552b772f009e157259cd78',
-    messagingSenderId: '477837912041',
-    projectId: 'crevify-83b45',
-    storageBucket: 'crevify-83b45.appspot.com',
+    apiKey: 'AIzaSyDeglp_WpL-RY5KJwFyPQ9OF5wJSuScId4',
+    appId: '1:331797684652:android:cba21b82d512550b9c5a09',
+    messagingSenderId: '331797684652',
+    projectId: 'crevify-app',
+    storageBucket: 'crevify-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB4JP9OY0Kwig2TJ97IYJFoEny_jVHF8cU',
-    appId: '1:477837912041:ios:3f1ca4ba02c70f1059cd78',
-    messagingSenderId: '477837912041',
-    projectId: 'crevify-83b45',
-    storageBucket: 'crevify-83b45.appspot.com',
+    apiKey: 'AIzaSyA2RY0M3k1V0tuGDPARIIT0OAYtoCKxTB0',
+    appId: '1:331797684652:ios:d4236926c90a4f2d9c5a09',
+    messagingSenderId: '331797684652',
+    projectId: 'crevify-app',
+    storageBucket: 'crevify-app.appspot.com',
     iosBundleId: 'com.example.crevify',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyB4JP9OY0Kwig2TJ97IYJFoEny_jVHF8cU',
-    appId: '1:477837912041:ios:9eefa8da0c07b5cc59cd78',
-    messagingSenderId: '477837912041',
-    projectId: 'crevify-83b45',
-    storageBucket: 'crevify-83b45.appspot.com',
+    apiKey: 'AIzaSyA2RY0M3k1V0tuGDPARIIT0OAYtoCKxTB0',
+    appId: '1:331797684652:ios:6bf5b495def4b5739c5a09',
+    messagingSenderId: '331797684652',
+    projectId: 'crevify-app',
+    storageBucket: 'crevify-app.appspot.com',
     iosBundleId: 'com.example.crevify.RunnerTests',
   );
 }
