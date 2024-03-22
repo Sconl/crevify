@@ -1,229 +1,287 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import '../../../shared/theme/theme.dart';
-import '../bloc/Pass_Bloc/pass_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:crevify/shared/widgets/appbar/custom_appbar.dart'; // Import custom_appbar.dart
+import 'package:crevify/shared/theme/theme.dart'; // Import your theme.dart file
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
 
+  @override
+  _SignupPageState createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  final _formKey = GlobalKey<FormState>(); // Key to identify our form
+  final _auth = FirebaseAuth.instance; // Firebase authentication instance
+  String _firstName = ''; // Variable to store first name
+  String _lastName = ''; // Variable to store last name
+  String _email = ''; // Variable to store email
+  String _password = ''; // Variable to store password
+  String _confirmPassword = ''; // Variable to store confirmed password
+  // Function to validate and save form
+  void _trySubmit() async {
+    final isValid = _formKey.currentState!.validate(); // Validate form fields
+    FocusScope.of(context).unfocus(); // Close keyboard
+
+    if (isValid) {
+      _formKey.currentState!.save(); // Save form fields
+      try {
+        await _auth.createUserWithEmailAndPassword(
+          email: _email,
+          password: _password,
+        );
+        // Navigate to another screen
+      } on FirebaseAuthException catch (e) {
+        // Show error message
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.message!),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  Future<User?> _signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    if (googleUser == null) {
+      return null;
+    }
+
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    return (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.darkTheme.backgroundColor,
-      body: BlocProvider(
-        create: (context) => PassBloc(),
-        child: SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height,
-            ),
-            child: IntrinsicHeight(
-              child: Column(
-                children: [
-                  SizedBox(height: 64.0),
-                  Image.asset(
-                    'assets/logos/_Iconmark_Main.webp',
-                    height: 100.0,
-                    width: 100.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'Join Us!',
-                      style: MyTheme.darkTheme.textTheme.headlineLarge!,
-                      textAlign: TextAlign.center,
+      appBar: CustomAppBar(
+        height: 75, // Adjust height as needed
+        title: 'Power Up!', // Changed the string
+        leadingWidgets: [],
+        trailingWidgets: [],
+      ),
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05), // 80% of screen width
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 100,
+                  child: Image.asset('assets/logos/crevify_iconmark_main.webp'),
+                ),
+                Text(
+                  'Join the Party!', // Changed the string
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),
+                ),
+                SizedBox(height: 15),
+                Text(
+                  'Ready to start your journey? Let\'s get started!',
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white, fontSize: 12),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 50,
+                        child: TextFormField(
+                          key: ValueKey('firstName'),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your first name.';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _firstName = value!;
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'First Name',
+                            filled: true,
+                            fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50.0),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                          textInputAction: TextInputAction.next,
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 5.0), // Reduce space
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text(
-                      'Create an account to start your journey with us.',
-                      style: MyTheme.darkTheme.textTheme.bodyText1!,
-                      textAlign: TextAlign.center,
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Container(
+                        height: 50,
+                        child: TextFormField(
+                          key: ValueKey('lastName'),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your last name.';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _lastName = value!;
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'Last Name',
+                            filled: true,
+                            fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50.0),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                          textInputAction: TextInputAction.next,
+                        ),
+                      ),
                     ),
+                  ],
+                ),
+                SizedBox(height: 15),
+                Container(
+                  height: 50,
+                  child: TextFormField(
+                    key: ValueKey('email'),
+                    validator: (value) {
+                      if (value!.isEmpty || !value.contains('@')) {
+                        return 'Please enter a valid email address.';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _email = value!;
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Email address',
+                      filled: true,
+                      fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
                   ),
-                  SizedBox(height: 4.0), // Reduce space
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        SizedBox(height: 10.0),
-                        Row(
-                          children: [
-                            Expanded(child: _buildInputField('First Name')),
-                            SizedBox(width: 10.0),
-                            Expanded(child: _buildInputField('Last Name')),
-                          ],
-                        ),
-                        SizedBox(height: 10.0),
-                        _buildInputField('Email'),
-                        SizedBox(height: 10.0),
-                        BlocBuilder<PassBloc, PassState>(
-                          builder: (context, state) {
-                            return Row(
-                              children: [
-                                Expanded(child: _buildPasswordField()),
-                                SizedBox(width: 10.0),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    BlocProvider.of<PassBloc>(context).add(PasswordSubmitted());
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.zero,
-                                    backgroundColor: MyTheme.lightTheme.primaryColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                    ),
-                                  ),
-                                  icon: Icon(Icons.arrow_forward, color: Colors.white),
-                                  label: SizedBox.shrink(),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                        SizedBox(height: 28.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/signup');
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 10),
-                            backgroundColor: MyTheme.lightTheme.primaryColor,
-                          ),
-                          child: Text(
-                            'Sign Up',
-                            style: MyTheme.lightTheme.textTheme.button!,
-                          ),
-                        ),
-                        SizedBox(height: 15.0),
-                        Text(
-                          'or',
-                          style: MyTheme.lightTheme.textTheme.button!.copyWith(fontSize: 18.0, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 15.0),
-                        OutlinedButton(
-                          onPressed: () {
-                            // Perform signup with Google action
-                          },
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 10),
-                            side: BorderSide(color: MyTheme.lightTheme.primaryColor!),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                MdiIcons.google,
-                                color: Colors.white,
-                                size: 24.0,
-                              ),
-                              SizedBox(width: 10.0),
-                              Text(
-                                'Sign Up with Google',
-                                style: MyTheme.lightTheme.textTheme.button!,
-                              ),
-                            ],
-                          ),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  height: 50,
+                  child: TextFormField(
+                    key: ValueKey('password'),
+                    validator: (value) {
+                      if (value!.isEmpty || value.length < 8) {
+                        return 'Password must be at least 8 characters long.';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _password = value!;
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      filled: true,
+                      fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    obscureText: true,
+                    textInputAction: TextInputAction.next,
+                  ),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  height: 50,
+                  child: TextFormField(
+                    key: ValueKey('confirmPassword'),
+                    validator: (value) {
+                      if (value!.isEmpty || value != _password) {
+                        return 'Passwords must match.';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _confirmPassword = value!;
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Confirm Password',
+                      filled: true,
+                      fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    obscureText: true,
+                    textInputAction: TextInputAction.done,
+                  ),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: ElevatedButton(
+                    onPressed: _trySubmit,
+                    child: Text('Sign Up', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                SizedBox(height: 12),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: OutlinedButton(
+                    onPressed: _signInWithGoogle,
+                    child: Text('Sign up with Google'),
+                  ),
+                ),
+                SizedBox(height: 4),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pushNamed('/login'),
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Already have an account? ',
+                      style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16.0),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Login',
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.secondary, fontSize: 16.0),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 32.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/login');
-                      },
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'Already have an account? ',
-                          style: MyTheme.lightTheme.textTheme.bodyText1!.copyWith(fontWeight: FontWeight.bold),
-                          children: [
-                            TextSpan(
-                              text: 'Log In',
-                              style: TextStyle(
-                                color: MyTheme.lightTheme.primaryColor!,
-                              ),
-                            ),
-                          ],
-                        ),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: SizedBox(
+                    height: 42,
+                    child: Opacity(
+                      opacity: 0.5,
+                      child: SvgPicture.asset(
+                        'assets/logos/ace_white.svg',
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.0),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'Powered By',
-                            style: TextStyle(
-                              color: MyTheme.darkTheme.textTheme.bodyText1!.color!.withOpacity(0.54),
-                              fontSize: 9, // Make text slightly smaller
-                            ),
-                          ),
-                          SizedBox(height: 5.0), // Reduce space between 'Powered By' text and logo
-                          SvgPicture.asset(
-                            'assets/logos/Ace_Cyber_Space_Logo_Horizontal_Full_Lockup_White.svg',
-                            height: 35.0,
-                            width: 105.0,
-                            color: MyTheme.darkTheme.textTheme.bodyText1!.color!.withOpacity(0.87), // Change color to white
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20.0),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildInputField(String label) {
-    return TextFormField(
-      style: MyTheme.darkTheme.textTheme.bodyText1!,
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: MyTheme.darkTheme.textTheme.bodyText1!.copyWith(color: MyTheme.darkTheme.textTheme.bodyText1!.color!.withOpacity(0.87), fontSize: 16.0), // Reduced font size
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: MyTheme.lightTheme.primaryColor),
-        ),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-        ),
-        isDense: true, // Add this line to reduce the height of input fields
-      ),
-    );
-  }
-
-  Widget _buildPasswordField() {
-    return Expanded(
-      child: TextFormField(
-        obscureText: true,
-        style: MyTheme.darkTheme.textTheme.bodyText1!,
-        decoration: InputDecoration(
-          labelText: 'Password',
-          labelStyle: MyTheme.darkTheme.textTheme.bodyText1!.copyWith(color: MyTheme.darkTheme.textTheme.bodyText1!.color!.withOpacity(0.87), fontSize: 16.0), // Reduced font size
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: MyTheme.lightTheme.primaryColor),
-          ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-          ),
-          isDense: true, // Add this line to reduce the height of input fields
         ),
       ),
     );

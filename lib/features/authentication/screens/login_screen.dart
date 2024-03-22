@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        height: 80, // Adjust height as needed
+        height: 75, // Adjust height as needed
         title: 'Suit Up!', // Just the string
         leadingWidgets: [],
         trailingWidgets: [],
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.085), // 80% of screen width
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05), // 80% of screen width
           child: Form(
             key: _formKey,
             child: Column(
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 20),
                 Container(
-                  height: 55, // Increased height by 10%
+                  height: 50, // Increased height by 10%
                   child: TextFormField(
                     key: ValueKey('email'),
                     validator: (value) {
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 15), // Increased space by 70%
                 Container(
-                  height: 55, // Increased height by 10%
+                  height: 50, // Increased height by 10%
                   child: TextFormField(
                     key: ValueKey('password'),
                     validator: (value) {
