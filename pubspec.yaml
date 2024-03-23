@@ -1,6 +1,6 @@
 name: crevify
 description: A food delivery app for campus students
-author: Sconl Peter | Ace Cyber Space
+homepage: https://github.com/Sconl
 publish_to: 'none'
 
 environment:
@@ -11,10 +11,7 @@ dependencies:
     sdk: flutter
   flutter_central_dependency:
     git:
-      url: git@github.com:Sconl/flutter-central-dependency.git
-  shape_clipper:
-    path: ./shape_clipper
-  vector_math: ^2.1.4
+      url: git@github.com:Sconl/flutter_central_dependency.git
             
 flutter:
   uses-material-design: true

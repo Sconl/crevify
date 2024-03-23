@@ -291,8 +291,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: a0153f584936f5c46ab81ba1e24c9f7c8bd91410
-      url: "git@github.com:Sconl/flutter-central-dependency.git"
+      resolved-ref: e4996a8384d9f0791d0a62002aebd24022123ddd
+      url: "git@github.com:Sconl/flutter_central_dependency.git"
     source: git
     version: "0.0.0"
   flutter_shaders:
@@ -698,11 +698,13 @@ packages:
     source: hosted
     version: "0.27.7"
   shape_clipper:
-    dependency: "direct main"
+    dependency: transitive
     description:
-      path: shape_clipper
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: ab1e529c59ea945ed1f63259e876c18510d92263
+      url: "git@github.com:Sconl/shape_clipper.git"
+    source: git
     version: "0.0.1"
   shared_preferences:
     dependency: transitive
@@ -974,7 +976,7 @@ packages:
     source: hosted
     version: "1.1.11+1"
   vector_math:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: vector_math
       sha256: "80b3257d1492ce4d091729e3a67a60407d227c27241d6927be0130c98e741803"

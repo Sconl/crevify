@@ -1,3 +1,8 @@
+// File: custom_theme.dart
+// Author: Sconl Peter
+// Email: sconl@proton.me
+// Description: A custom theme for this flutter project
+
 import 'package:flutter/material.dart';
 
 class MyTheme {
