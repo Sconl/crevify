@@ -9,7 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_central_dependency:
+    git:
+      url: git@github.com:Sconl/flutter_central_dependency.git
 
 flutter:
   uses-material-design: true
