@@ -48,17 +48,17 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     _buildPage(
-                      imageUrl: 'assets/images/splash_screen_1.jpg',
+                      imageUrl: 'assets/images/splash_screen_1.webp',
                       title: 'Welcome to Crevify!',
                       subtitle: 'Where Healthy Meets Delicious!',
                     ),
                     _buildPage(
-                      imageUrl: 'assets/images/splash_screen_2.jpg',
+                      imageUrl: 'assets/images/splash_screen_2.webp',
                       title: 'No Time? No Problem!',
                       subtitle: 'Healthy Meals, Delivered Fast!',
                     ),
                     _buildPage(
-                      imageUrl: 'assets/images/splash_screen_3.jpg',
+                      imageUrl: 'assets/images/splash_screen_3.webp',
                       title: 'Eat Well, Live Well!',
                       subtitle: 'Nutritious Meals for Campus Life!',
                     ),
