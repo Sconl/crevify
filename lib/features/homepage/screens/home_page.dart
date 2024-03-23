@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:custom_appbar/custom_appbar.dart'; // Import custom app bar package
 import '../widgets/hero_banner.dart'; // Import HeroBanner widget
+import '../services/image_service.dart'; // Import image_service.dart
 
 class HomePage extends StatelessWidget {
   final User user;
@@ -25,11 +26,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             HeroBanner(
-              images: Future.value([
-                'assets/images/image1.jpg',
-                'assets/images/image2.jpg',
-                'assets/images/image3.jpg',
-              ]),
+              images: fetchImageUrls(),
             ),
             const Text(
               'Welcome to the Home Page!',
