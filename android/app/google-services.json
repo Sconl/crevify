@@ -12,7 +12,28 @@
           "package_name": "com.example.crevify"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "331797684652-96vs9jhofbmj75kc7uj4imupoalr0ca8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.crevify",
+            "certificate_hash": "621655ef40cb632eb84d9479d876b32d5d48161f"
+          }
+        },
+        {
+          "client_id": "331797684652-vkl0hen7poqubv77h0eot1mput6jjji1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.crevify",
+            "certificate_hash": "8636c23f343d99f9d8fd11c9f074f7608b44e00d"
+          }
+        },
+        {
+          "client_id": "331797684652-i9c7qtgv30v18qofntf0eaej7aop58ot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDeglp_WpL-RY5KJwFyPQ9OF5wJSuScId4"
@@ -20,7 +41,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331797684652-i9c7qtgv30v18qofntf0eaej7aop58ot.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "331797684652-fdp8iiggm8cspvm8hedkiuggts48l3qk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.crevify.RunnerTests"
+              }
+            }
+          ]
         }
       }
     }

@@ -5,10 +5,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:custom_appbar/custom_appbar.dart'; // Import custom_appbar package
 import 'package:crevify/shared/theme/custom_theme.dart'; // Import your theme.dart file
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -24,7 +24,6 @@ class _SignupPageState extends State<SignupPage> {
   String _lastName = ''; // Variable to store last name
   String _email = ''; // Variable to store email
   String _password = ''; // Variable to store password
-  String _confirmPassword = ''; // Variable to store confirmed password
   // Function to validate and save form
   void _trySubmit() async {
     final isValid = _formKey.currentState!.validate(); // Validate form fields
@@ -70,7 +69,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        height: 80, // Adjust height as needed
+        height: 75, // Adjust height as needed
         title: 'Power Up!', // Changed the string
         leadingWidgets: [],
         trailingWidgets: [],
@@ -200,33 +199,6 @@ class _SignupPageState extends State<SignupPage> {
                     },
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      filled: true,
-                      fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    obscureText: true,
-                    textInputAction: TextInputAction.next,
-                  ),
-                ),
-                SizedBox(height: 15),
-                Container(
-                  height: 50,
-                  child: TextFormField(
-                    key: ValueKey('confirmPassword'),
-                    validator: (value) {
-                      if (value!.isEmpty || value != _password) {
-                        return 'Passwords must match.';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      _confirmPassword = value!;
-                    },
-                    decoration: InputDecoration(
-                      labelText: 'Confirm Password',
                       filled: true,
                       fillColor: Theme.of(context).primaryColor.withOpacity(0.25),
                       border: OutlineInputBorder(

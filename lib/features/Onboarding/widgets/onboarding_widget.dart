@@ -1,5 +1,9 @@
+// File: onboarding widget.dart
+// Author: Sconl Peter
+// Email: sconl@proton.me
+// Description: onboarding screen for crevify app
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -31,7 +35,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.lightTheme.backgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -76,8 +80,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                           curve: Curves.ease,
                         );
                       },
-                      effect:
-                          smooth_page_indicator.ExpandingDotsEffect(
+                      effect: smooth_page_indicator.ExpandingDotsEffect(
                         expansionFactor: 4,
                         spacing: 8,
                         radius: 40,
@@ -100,13 +103,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
             onPressed: () async {
               Navigator.pushNamed(context, '/login');
             },
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 14),
-              backgroundColor: MyTheme.lightTheme.primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
+            style: MyTheme.lightTheme.elevatedButtonTheme.style,
             child: const Text(
               'Ready, Set, Go!',
               style: TextStyle(
@@ -198,17 +195,16 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 100),
-            SvgPicture.asset(
-              'assets/logos/crevify_logo_vertical_main_white.svg',
+            Image.asset(
+              'assets/logos/crevify_logo_vertical_main_white.webp',
               height: 160,
               width: 160,
-              color: Colors.white,
             ),
             const SizedBox(height: 20),
             Text(
               title,
               textAlign: TextAlign.center,
-              style: MyTheme.lightTheme.textTheme.headlineLarge,
+              style: MyTheme.lightTheme.textTheme.headlineLarge?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 10),
             Padding(
@@ -216,7 +212,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
               child: Text(
                 subtitle,
                 textAlign: TextAlign.center,
-                style: MyTheme.lightTheme.textTheme.bodyText1,
+                style: MyTheme.lightTheme.textTheme.bodyText1?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
               ),
             ),
             const SizedBox(height: 20),

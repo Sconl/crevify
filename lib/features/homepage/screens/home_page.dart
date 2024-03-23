@@ -5,7 +5,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shape_clipper/s_clipper.dart'; // Import the SClipper
 import 'package:custom_appbar/custom_appbar.dart'; // Import custom app bar package
 
 class HomePage extends StatelessWidget {

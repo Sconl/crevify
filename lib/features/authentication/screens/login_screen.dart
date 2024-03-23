@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:custom_appbar/custom_appbar.dart'; // Import custom_appbar package
 import 'package:crevify/shared/theme/custom_theme.dart'; // Import your theme.dart file
+import 'package:crevify/features/homepage/screens/home_page.dart'; // Import HomePage widget
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -31,11 +32,23 @@ class _LoginPageState extends State<LoginPage> {
     if (isValid) {
       _formKey.currentState!.save(); // Save form fields
       try {
-        await _auth.signInWithEmailAndPassword(
+        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: _email,
           password: _password,
         );
-        // Navigate to another screen
+        // Check if user is not null
+        if (userCredential.user != null) {
+          // Navigate to HomePage
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(user: userCredential.user!)));
+        } else {
+          // Show error message
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Failed to sign in. Please try again.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       } on FirebaseAuthException catch (e) {
         // Show error message
         ScaffoldMessenger.of(context).showSnackBar(
@@ -62,14 +75,28 @@ class _LoginPageState extends State<LoginPage> {
       idToken: googleAuth.idToken,
     );
 
-    return (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    // Check if user is not null
+    if (userCredential.user != null) {
+      // Navigate to HomePage
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(user: userCredential.user!)));
+    } else {
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to sign in with Google. Please try again.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+    return userCredential.user;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        height: 80, // Adjust height as needed
+        height: 75, // Adjust height as needed
         title: 'Suit Up!', // Just the string
         leadingWidgets: [],
         trailingWidgets: [],
@@ -98,7 +125,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 20),
                 Container(
-                  height: 50, // Increased height by 10%
+                  height: 60, // Increased height by 20%
+                  margin: EdgeInsets.symmetric(horizontal: 16.0), // Added left and right margins
                   child: TextFormField(
                     key: ValueKey('email'),
                     validator: (value) {
@@ -125,7 +153,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 15), // Increased space by 70%
                 Container(
-                  height: 50, // Increased height by 10%
+                  height: 60, // Increased height by 20%
+                  margin: EdgeInsets.symmetric(horizontal: 16.0), // Added left and right margins
                   child: TextFormField(
                     key: ValueKey('password'),
                     validator: (value) {
