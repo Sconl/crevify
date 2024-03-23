@@ -1,7 +1,12 @@
+// File: home_page.dart
+// Author: Sconl Peter
+// Email: sconl@proton.me
+// Description: homescreen for crevify app
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shape_clipper/s_clipper.dart'; // Import the SClipper
-import '../../../shared/widgets/appbar/custom_appbar.dart';
+import 'package:custom_appbar/custom_appbar.dart'; // Import custom app bar package
 
 class HomePage extends StatelessWidget {
   final User user;

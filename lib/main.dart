@@ -10,7 +10,7 @@ import 'features/Onboarding/widgets/onboarding_widget.dart';
 import 'features/splash_screen/screens/splash_screen.dart'; 
 import 'features/authentication/screens/login_screen.dart'; // Import your LoginPage widget
 import 'features/authentication/screens/signup_screen.dart'; // Comment out this line
-import './shared/theme/theme.dart'; // Import your theme.dart file
+import 'shared/theme/custom_theme.dart'; // Import your theme.dart file
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized(); 

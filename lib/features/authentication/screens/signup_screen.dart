@@ -1,9 +1,14 @@
+// File: signup_screen.dart
+// Author: Sconl Peter
+// Email: sconl@proton.me
+// Description: sign up screen for crevify app
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:crevify/shared/widgets/appbar/custom_appbar.dart'; // Import custom_appbar.dart
-import 'package:crevify/shared/theme/theme.dart'; // Import your theme.dart file
+import 'package:custom_appbar/custom_appbar.dart'; // Import custom_appbar package
+import 'package:crevify/shared/theme/custom_theme.dart'; // Import your theme.dart file
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);

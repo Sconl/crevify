@@ -4,7 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:animated_text_kit/animated_text_kit.dart';
 import '../models/onboarding_model.dart';
-import '../../../shared/theme/theme.dart';
+import '../../../shared/theme/custom_theme.dart';
 
 class OnboardingWidget extends StatefulWidget {
   const OnboardingWidget({Key? key});
