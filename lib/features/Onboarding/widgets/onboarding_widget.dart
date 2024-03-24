@@ -60,7 +60,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                     _buildPage(
                       imageUrl: 'assets/images/splash_screen_3.webp',
                       title: 'Eat Well, Live Well!',
-                      subtitle: 'Nutritious Meals for Campus Life!',
+                      subtitle: 'Affordable, Nutritious Meals for Comrades!',
                     ),
                   ],
                 ),
@@ -99,19 +99,23 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
           const SizedBox(
             height: 36,
           ),
-          ElevatedButton(
-            onPressed: () async {
-              Navigator.pushNamed(context, '/login');
-            },
-            style: MyTheme.lightTheme.elevatedButtonTheme.style,
-            child: const Text(
-              'Ready, Set, Go!',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
+          Container(
+            width: MediaQuery.of(context).size.width * 0.7, // 60% of screen width
+            child: ElevatedButton(
+              onPressed: () async {
+                Navigator.pushNamed(context, '/login');
+              },
+              style: MyTheme.lightTheme.elevatedButtonTheme.style,
+              child: const Text(
+                'Ready, Set, Go!',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
               ),
             ),
           ),
+
           const SizedBox(height: 36),
           SizedBox(
             height: 50,
