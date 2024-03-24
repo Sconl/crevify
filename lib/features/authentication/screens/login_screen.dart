@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:custom_appbar/custom_appbar.dart'; // Import custom_appbar package
 import 'package:crevify/shared/theme/custom_theme.dart'; // Import your theme.dart file
-import 'package:crevify/features/homepage/screens/home_page.dart'; // Import HomePage widget
+import 'package:crevify/features/homepage/screens/homepage.dart'; // Import HomePage widget
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05), // 80% of screen width
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0), // 80% of screen width
           child: Form(
             key: _formKey,
             child: Column(

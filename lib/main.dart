@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:crevify/features/authentication/services/auth_service.dart'; 
 import 'features/authentication/bloc/Auth_bloc/auth_bloc.dart';
 import 'features/authentication/bloc/Auth_bloc/auth_state.dart';
-import 'features/homepage/screens/home_page.dart'; 
+import 'features/homepage/screens/homepage.dart'; 
 import 'features/Onboarding/widgets/onboarding_widget.dart'; 
 import 'features/splash_screen/screens/splash_screen.dart'; 
 import 'features/authentication/screens/login_screen.dart'; // Import your LoginPage widget
@@ -55,6 +55,7 @@ class MyApp extends StatelessWidget {
             ),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignupPage(), // This will now refer to the SignupPage from login_page.dart
+        '/home': (context) => HomePage(user: FirebaseAuth.instance.currentUser!), // Add this line to define the route to the HomePage
         // other routes...
       },
     );
