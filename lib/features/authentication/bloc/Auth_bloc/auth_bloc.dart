@@ -1,8 +1,13 @@
+// Import Dart packages
 import 'dart:async';
+
+// Import Flutter packages
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+// Import local packages
 import 'auth_event.dart';
 import 'auth_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:crevify/features/authentication/services/auth_service.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {

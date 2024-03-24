@@ -8,8 +8,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:custom_appbar/custom_appbar.dart'; // Import custom_appbar package
-import 'package:crevify/shared/theme/custom_theme.dart'; // Import your theme.dart file
-import 'package:crevify/features/homepage/screens/homepage.dart'; // Import HomePage widget
+//import 'package:crevify/shared/theme/custom_theme.dart'; // Import your theme.dart file
+//import 'package:crevify/features/homepage/screens/homepage.dart'; // Import HomePage widget
+import 'package:crevify/features/loading_screen/screens/loading_screen.dart'; // Import LoadingScreen widget
+import '../../splash_screen/bloc/splash_bloc/splash_bloc.dart'; // Import SplashBloc
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -23,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   final _auth = FirebaseAuth.instance; // Firebase authentication instance
   String _email = ''; // Variable to store email
   String _password = ''; // Variable to store password
+  final SplashBloc _splashBloc = SplashBloc(); // Initialize SplashBloc here
 
   // Function to validate and save form
   void _trySubmit() async {
@@ -32,23 +35,17 @@ class _LoginPageState extends State<LoginPage> {
     if (isValid) {
       _formKey.currentState!.save(); // Save form fields
       try {
-        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-          email: _email,
-          password: _password,
-        );
-        // Check if user is not null
-        if (userCredential.user != null) {
-          // Navigate to HomePage
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(user: userCredential.user!)));
-        } else {
-          // Show error message
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Failed to sign in. Please try again.'),
-              backgroundColor: Colors.red,
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => LoadingScreen(
+              future: _auth.signInWithEmailAndPassword(
+                email: _email,
+                password: _password,
+              ),
+              splashBloc: _splashBloc,
             ),
-          );
-        }
+          ),
+        );
       } on FirebaseAuthException catch (e) {
         // Show error message
         ScaffoldMessenger.of(context).showSnackBar(
@@ -75,21 +72,16 @@ class _LoginPageState extends State<LoginPage> {
       idToken: googleAuth.idToken,
     );
 
-    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-    // Check if user is not null
-    if (userCredential.user != null) {
-      // Navigate to HomePage
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(user: userCredential.user!)));
-    } else {
-      // Show error message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Failed to sign in with Google. Please try again.'),
-          backgroundColor: Colors.red,
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => LoadingScreen(
+          future: FirebaseAuth.instance.signInWithCredential(credential),
+          splashBloc: _splashBloc,
         ),
-      );
-    }
-    return userCredential.user;
+      ),
+    );
+
+    return null;
   }
 
   @override
