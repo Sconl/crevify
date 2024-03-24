@@ -8,7 +8,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context); // Get current theme
+    Theme.of(context); // Get current theme
     return SplashWidget(splashBloc: splashBloc,); // Pass theme
   }
 }

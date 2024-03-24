@@ -107,12 +107,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   'Welcome Back!',
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.black), // Updated color to black for visibility on bright backgrounds
                 ),
                 SizedBox(height: 15),
                 Text(
                   'Ready to dive back into your journey? Let\'s get started!',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white, fontSize: 12),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.black, fontSize: 12), // Updated color to black for visibility on bright backgrounds
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 20),

@@ -20,15 +20,17 @@ class MyTheme {
         fontSize: 32.0,
         fontWeight: FontWeight.bold,
         fontFamily: 'Popins',
+        color: Colors.black, // Updated color to black for visibility on bright backgrounds
       ),
       bodyText1: TextStyle(
         fontSize: 16.0,
         fontFamily: 'Popins',
+        color: Colors.black, // Updated color to black for visibility on bright backgrounds
       ),
       button: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.bold,
-        color: Colors.white, // Use white for all buttons
+        color: Colors.black, // Updated color to black for visibility on bright backgrounds
         fontFamily: 'Popins',
       ),
     ),
@@ -37,7 +39,7 @@ class MyTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(Colors.white), // Use white for text in TextButtons
+        foregroundColor: MaterialStateProperty.all(Colors.black), // Updated color to black for visibility on bright backgrounds
         backgroundColor: MaterialStateProperty.all(Colors.transparent), // No fill color
       ),
     ),

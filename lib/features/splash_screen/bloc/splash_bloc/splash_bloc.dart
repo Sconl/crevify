@@ -1,15 +1,14 @@
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'splash_bloc.dart';
+//import 'splash_bloc.dart';
 import 'splash_event.dart';
 import 'splash_state.dart';
-import 'package:equatable/equatable.dart';
+//import 'package:equatable/equatable.dart';
 
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc() : super(const SplashScreenState(0.0));
 
-  @override
   Stream<SplashState> mapEventToState(SplashEvent event) async* {
     if (event is AppStarted) {
       // Simulate some delay for splash screen (optional)

@@ -8,7 +8,6 @@ part 'pass_state.dart';
 class PassBloc extends Bloc<PassEvent, PassState> {
   PassBloc() : super(PasswordFieldState());
 
-  @override
   Stream<PassState> mapEventToState(
     PassEvent event,
   ) async* {
