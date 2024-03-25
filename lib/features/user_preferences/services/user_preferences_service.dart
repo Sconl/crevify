@@ -39,6 +39,12 @@ class UserPreferencesService {
       'marketingPreferences': userPreferences.marketingPreferences,
       'appVersion': userPreferences.appVersion,
       'privacySettings': userPreferences.privacySettings,
+      'portionSize': userPreferences.portionSize, // New field
+      'studentDeals': userPreferences.studentDeals, // New field
+      'supportLocal': userPreferences.supportLocal, // New field
+      'lateNightDelivery': userPreferences.lateNightDelivery, // New field
+      'affordabilityFilters': userPreferences.affordabilityFilters, // New field
+      'campusPartnerships': userPreferences.campusPartnerships, // New field
     });
   }
 }

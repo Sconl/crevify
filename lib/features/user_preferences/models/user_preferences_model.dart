@@ -32,6 +32,12 @@ class UserPreferences {
   bool marketingPreferences;
   String? appVersion;
   bool privacySettings;
+  String? portionSize; // New field
+  bool studentDeals; // New field
+  bool supportLocal; // New field
+  bool lateNightDelivery; // New field
+  bool affordabilityFilters; // New field
+  bool campusPartnerships; // New field
 
   UserPreferences({
     this.profileImage,
@@ -62,5 +68,11 @@ class UserPreferences {
     this.marketingPreferences = true,
     this.appVersion,
     this.privacySettings = true,
+    this.portionSize, // New field
+    this.studentDeals = false, // New field
+    this.supportLocal = false, // New field
+    this.lateNightDelivery = false, // New field
+    this.affordabilityFilters = false, // New field
+    this.campusPartnerships = false, // New field
   });
 }

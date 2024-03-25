@@ -19,6 +19,7 @@ import 'features/splash_screen/screens/splash_screen.dart';
 import 'features/authentication/screens/login_screen.dart'; // Import your LoginPage widget
 import 'features/authentication/screens/signup_screen.dart'; // Comment out this line
 import 'shared/theme/custom_theme.dart'; // Import your theme.dart file
+import 'features/Onboarding/screens/learn_more.dart'; // Import your LearnMorePage widget
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized(); 
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
                 '/login': (context) => const LoginPage(),
                 '/signup': (context) => const SignupPage(),
                 '/home': (context) => HomePage(user: FirebaseAuth.instance.currentUser!),
+                '/learn_more': (context) => const LearnMorePage(), // Add your LearnMorePage route
               },
             ),
           );
