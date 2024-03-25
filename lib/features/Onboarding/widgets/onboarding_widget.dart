@@ -35,7 +35,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -216,7 +216,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
               child: Text(
                 subtitle,
                 textAlign: TextAlign.center,
-                style: MyTheme.lightTheme.textTheme.bodyText1?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
+                style: MyTheme.lightTheme.textTheme.bodyLarge?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
               ),
             ),
             const SizedBox(height: 20),

@@ -40,13 +40,13 @@ class _HomePageState extends State<HomePage> {
         size: Size(1.1 * MediaQuery.of(context).size.width / 4, 1.1 * MediaQuery.of(context).size.width / 4), // Increase the size of the custom shape circle by 10%
         painter: _CustomShapePainter(), // Custom shape painter
       ),
-    ) as CustomCircleAnimation;
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor, // Set the background color here
+      backgroundColor: Theme.of(context).colorScheme.background, // Set the background color here
       body: Stack(
         children: [
           Positioned(

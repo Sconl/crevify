@@ -4,7 +4,7 @@
 // Description: Hero Banner Widget for the homepage of the crevify app
 
 import 'package:flutter/material.dart';
-import '../services/image_service.dart'; // Import image_service.dart
+// Import image_service.dart
 
 class HeroBanner extends StatefulWidget {
   final Future<List<String>> images;

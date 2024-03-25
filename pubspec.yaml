@@ -12,7 +12,8 @@ dependencies:
   flutter_central_dependency:
     git:
       url: git@github.com:Sconl/flutter_central_dependency.git
-
+  timeline_tile: ^2.0.0
+  
 flutter:
   uses-material-design: true
   assets:

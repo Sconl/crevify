@@ -1,4 +1,7 @@
-// splash_widget.dart
+// File: splash_widget.dart
+// Author: Sconl Peter
+// Email: sconl@proton.me
+// Description: This file contains the SplashWidget which displays the splash screen of the app.
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -34,10 +37,16 @@ class _SplashWidgetState extends State<SplashWidget> with SingleTickerProviderSt
   }
 
   @override
+  void dispose() {
+    controller.dispose(); // Dispose the animation controller
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = MediaQuery.platformBrightnessOf(context) == Brightness.dark ? MyTheme.darkTheme : MyTheme.lightTheme;
     return Scaffold(
-      backgroundColor: theme.backgroundColor, // Set background based on theme
+      backgroundColor: theme.colorScheme.background, // Set background based on theme
       body: Stack( // Use Stack to overlay widgets
         alignment: Alignment.center, // Center the children of the Stack
         children: [
@@ -46,7 +55,7 @@ class _SplashWidgetState extends State<SplashWidget> with SingleTickerProviderSt
             child: Center( // Wrap with Center
               child: SvgPicture.asset(
                 'assets/logos/ace_white.svg',
-                color: theme.primaryColor, // Set the fill color to the primary color of the theme
+                color: theme.colorScheme.primary, // Set the font color to the primary color of the theme
                 width: MediaQuery.of(context).size.width * 0.2,
               ),
             ),
@@ -78,14 +87,18 @@ class _SplashWidgetState extends State<SplashWidget> with SingleTickerProviderSt
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Center(
-                child: TypewriterAnimatedTextKit(
-                  text: ['Made just for you...'],
-                  textStyle: TextStyle(
-                    fontSize: 12.0, // Make the text small in size
-                    color: theme.primaryColor, // Set the font color to the primary color of the theme
-                    fontFamily: 'Popins',
-                  ),
-                  speed: Duration(milliseconds: 100), // Adjust this value to make the typing effect faster
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      'Made just for you...',
+                      textStyle: TextStyle(
+                        fontSize: 12.0, // Make the text small in size
+                        color: theme.primaryColor, // Set the font color to the primary color of the theme
+                        fontFamily: 'Popins',
+                      ),
+                      speed: Duration(milliseconds: 100), // Adjust this value to make the typing effect faster
+                    ),
+                  ],
                   pause: Duration(seconds: 3), // Add a pause before the animation starts
                 ),
               ),

@@ -11,6 +11,7 @@ import 'package:custom_appbar/custom_appbar.dart'; // Import custom_appbar packa
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:crevify/features/loading_screen/screens/loading_screen.dart'; // Import LoadingScreen widget
 import '../../splash_screen/bloc/splash_bloc/splash_bloc.dart'; // Import SplashBloc
+import '../../user_preferences/screens/user_preferences.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -30,80 +31,102 @@ class _SignupPageState extends State<SignupPage> {
 
   // Function to validate and save form
   void _trySubmit() async {
-    final isValid = _formKey.currentState!.validate(); // Validate form fields
-    FocusScope.of(context).unfocus(); // Close keyboard
+  final isValid = _formKey.currentState!.validate(); // Validate form fields
+  FocusScope.of(context).unfocus(); // Close keyboard
 
-    if (isValid) {
-      _formKey.currentState!.save(); // Save form fields
-      try {
-        UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-          email: _email,
-          password: _password,
-        );
+  if (isValid) {
+    _formKey.currentState!.save(); // Save form fields
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      );
 
-        // Update user information
-        await userCredential.user!.updateDisplayName('$_firstName $_lastName');
+      // Update user information
+      await userCredential.user!.updateDisplayName('$_firstName $_lastName');
 
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => LoadingScreen(
-              future: Future.value(userCredential),
-              splashBloc: _splashBloc,
-            ),
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => LoadingScreen(
+            future: Future.delayed(Duration(seconds: 3), () async {
+              await FirebaseAuth.instance.currentUser!;
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserPreferencesScreen(
+                    user: FirebaseAuth.instance.currentUser!,
+                  ),
+                ),
+              );
+            }),
+            splashBloc: _splashBloc,
           ),
-        );
-      } on FirebaseAuthException catch (e) {
-        // Show error message
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(e.message!),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.message!),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
+}
 
-  Future<User?> _signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+Future<User?> _signInWithGoogle() async {
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    if (googleUser == null) {
-      return null;
-    }
-
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => LoadingScreen(
-          future: FirebaseAuth.instance.signInWithCredential(credential),
-          splashBloc: _splashBloc,
-        ),
-      ),
-    );
-
+  if (googleUser == null) {
     return null;
   }
 
+  final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth.accessToken,
+    idToken: googleAuth.idToken,
+  );
+
+  Navigator.of(context).pushReplacement(
+    MaterialPageRoute(
+      builder: (context) => LoadingScreen(
+        future: Future.delayed(Duration(seconds: 3), () async {
+          await FirebaseAuth.instance.signInWithCredential(credential);
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => UserPreferencesScreen(
+                user: FirebaseAuth.instance.currentUser!,
+              ),
+            ),
+          );
+        }),
+        splashBloc: _splashBloc,
+      ),
+    ),
+  );
+
+  return null;
+}
+
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(
         height: 75, // Adjust height as needed
-        title: 'Power Up!', // Changed the string
+        title: 'Power Up! 😀', // Changed the string
         leadingWidgets: [],
         trailingWidgets: [],
       ),
-      backgroundColor: theme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05), // 80% of screen width
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width *
+                  0.05), // 80% of screen width
           child: Form(
             key: _formKey,
             child: Column(
@@ -113,21 +136,24 @@ class _SignupPageState extends State<SignupPage> {
                   child: Image.asset('assets/logos/crevify_iconmark_main.webp'),
                 ),
                 Text(
-                  'Join the Party!', // Changed the string
-                  style: theme.textTheme.headlineLarge!.copyWith(color: theme.colorScheme.onBackground), // Updated color to match the theme
+                  'Join the Party!',
+                  style: Theme.of(context).textTheme.headlineLarge, // Get styling from custom_theme.dart
                 ),
                 SizedBox(height: 15),
-                Text(
-                  'Ready to start your journey? Let\'s get started!',
-                  style: theme.textTheme.bodyText1!.copyWith(color: theme.colorScheme.onBackground, fontSize: 12), // Updated color to match the theme
-                  textAlign: TextAlign.center,
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8, // 90% of screen width
+                  child: Text(
+                    'Craving culinary creations? Sign Up & Unlock a World of Flavor with Crevify!',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 12.5), // Get styling from custom_theme.dart and set font size to 12
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 SizedBox(height: 20),
                 Row(
                   children: [
                     Expanded(
                       child: Container(
-                        height: 50,
+                        height: 60,
                         child: TextFormField(
                           key: ValueKey('firstName'),
                           validator: (value) {
@@ -142,7 +168,9 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: InputDecoration(
                             labelText: 'First Name',
                             filled: true,
-                            fillColor: theme.primaryColor.withOpacity(0.25),
+                            fillColor: Theme.of(context)
+                                .primaryColor
+                                .withOpacity(0.25),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50.0),
                               borderSide: BorderSide.none,
@@ -155,7 +183,7 @@ class _SignupPageState extends State<SignupPage> {
                     SizedBox(width: 10),
                     Expanded(
                       child: Container(
-                        height: 50,
+                        height: 60,
                         child: TextFormField(
                           key: ValueKey('lastName'),
                           validator: (value) {
@@ -170,7 +198,9 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: InputDecoration(
                             labelText: 'Last Name',
                             filled: true,
-                            fillColor: theme.primaryColor.withOpacity(0.25),
+                            fillColor: Theme.of(context)
+                                .primaryColor
+                                .withOpacity(0.25),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50.0),
                               borderSide: BorderSide.none,
@@ -184,7 +214,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 SizedBox(height: 15),
                 Container(
-                  height: 50,
+                  height: 60,
                   child: TextFormField(
                     key: ValueKey('email'),
                     validator: (value) {
@@ -199,7 +229,8 @@ class _SignupPageState extends State<SignupPage> {
                     decoration: InputDecoration(
                       labelText: 'Email address',
                       filled: true,
-                      fillColor: theme.primaryColor.withOpacity(0.25),
+                      fillColor:
+                          Theme.of(context).primaryColor.withOpacity(0.25),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50.0),
                         borderSide: BorderSide.none,
@@ -211,7 +242,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 SizedBox(height: 15),
                 Container(
-                  height: 50,
+                  height: 60,
                   child: TextFormField(
                     key: ValueKey('password'),
                     validator: (value) {
@@ -226,7 +257,8 @@ class _SignupPageState extends State<SignupPage> {
                     decoration: InputDecoration(
                       labelText: 'Password',
                       filled: true,
-                      fillColor: theme.primaryColor.withOpacity(0.25),
+                      fillColor:
+                          Theme.of(context).primaryColor.withOpacity(0.25),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50.0),
                         borderSide: BorderSide.none,
@@ -241,7 +273,8 @@ class _SignupPageState extends State<SignupPage> {
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: ElevatedButton(
                     onPressed: _trySubmit,
-                    child: Text('Sign Up', style: TextStyle(color: Colors.white)),
+                    child:
+                        Text('Sign Up', style: TextStyle(color: Colors.white)),
                   ),
                 ),
                 SizedBox(height: 12),
@@ -258,11 +291,16 @@ class _SignupPageState extends State<SignupPage> {
                   child: RichText(
                     text: TextSpan(
                       text: 'Already have an account? ',
-                      style: TextStyle(color: theme.primaryColor, fontSize: 16.0),
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 16.0),
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Login',
-                          style: TextStyle(fontWeight: FontWeight.bold, color: theme.colorScheme.secondary, fontSize: 16.0),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.secondary,
+                              fontSize: 16.0),
                         ),
                       ],
                     ),
@@ -277,7 +315,7 @@ class _SignupPageState extends State<SignupPage> {
                       opacity: 0.5,
                       child: SvgPicture.asset(
                         'assets/logos/ace_white.svg',
-                        color: theme.primaryColor,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),

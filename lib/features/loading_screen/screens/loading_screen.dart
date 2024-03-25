@@ -55,7 +55,7 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
   Widget build(BuildContext context) {
     final theme = MediaQuery.platformBrightnessOf(context) == Brightness.dark ? MyTheme.darkTheme : MyTheme.lightTheme;
     return Scaffold(
-      backgroundColor: theme.backgroundColor, // Set background based on theme
+      backgroundColor: theme.colorScheme.background, // Set background based on theme
       body: Stack( // Use Stack to overlay widgets
         alignment: Alignment.center, // Center the children of the Stack
         children: [

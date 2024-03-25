@@ -8,8 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:custom_appbar/custom_appbar.dart'; // Import custom_appbar package
-//import 'package:crevify/shared/theme/custom_theme.dart'; // Import your theme.dart file
-//import 'package:crevify/features/homepage/screens/homepage.dart'; // Import HomePage widget
+// Import your theme.dart file
+// Import HomePage widget
 import 'package:crevify/features/loading_screen/screens/loading_screen.dart'; // Import LoadingScreen widget
 import '../../splash_screen/bloc/splash_bloc/splash_bloc.dart'; // Import SplashBloc
 
@@ -89,11 +89,11 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: CustomAppBar(
         height: 75, // Adjust height as needed
-        title: 'Suit Up!', // Just the string
+        title: 'Suit Up! 😋', // Just the string
         leadingWidgets: [],
         trailingWidgets: [],
       ),
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0), // 80% of screen width
@@ -107,14 +107,18 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   'Welcome Back!',
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.black), // Updated color to black for visibility on bright backgrounds
+                  style: Theme.of(context).textTheme.headlineLarge, // Get styling from custom_theme.dart
                 ),
                 SizedBox(height: 15),
-                Text(
-                  'Ready to dive back into your journey? Let\'s get started!',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.black, fontSize: 12), // Updated color to black for visibility on bright backgrounds
-                  textAlign: TextAlign.center,
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8, // 90% of screen width
+                  child: Text(
+                    'Hear that sizzle? Smell those spices? Login to Satisfy with Crevify!',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 12.5), // Get styling from custom_theme.dart and set font size to 12
+                    textAlign: TextAlign.center,
+                  ),
                 ),
+
                 SizedBox(height: 20),
                 Container(
                   height: 60, // Increased height by 20%
