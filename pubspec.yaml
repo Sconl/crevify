@@ -14,6 +14,8 @@ dependencies:
       url: git@github.com:Sconl/flutter_central_dependency.git
   timeline_tile: ^2.0.0
   confetti: ^0.7.0
+  image_picker: ^1.0.7
+  firebase_storage: ^11.6.10
   
   
 flutter:
