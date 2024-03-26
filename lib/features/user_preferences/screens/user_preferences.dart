@@ -60,7 +60,7 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       showDialog(
         context: context,
         builder: (context) => SignupSuccessModal(), // Display the modal
@@ -122,8 +122,8 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                               alignment: TimelineAlign.manual,
                               lineXY: 0.1,
                               isFirst: true,
-                              indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.person, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(0.3), padding: EdgeInsets.all(5)), // 40% smaller, primary color fill with 30% opacity, white icon
-                              beforeLineStyle: LineStyle(color: Theme.of(context).primaryColor.withOpacity(0.3), thickness: 2), // Use primary color with 30% opacity for the line
+                              indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.person, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(1), padding: EdgeInsets.all(10)), // 40% smaller, primary color fill with 30% opacity, white icon
+                              beforeLineStyle: LineStyle(color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), thickness: 3), // Use primary color with 30% opacity for the line
                               endChild: Padding(
                                 padding: EdgeInsets.all(8.0), // Add padding to the tile icon
                                 child: OnboardingWelcomeDetails(
@@ -143,8 +143,8 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                             child: TimelineTile(
                               alignment: TimelineAlign.manual,
                               lineXY: 0.1,
-                              indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.done, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(0.3), padding: EdgeInsets.all(5)), // 40% smaller, primary color fill with 30% opacity, white icon
-                              beforeLineStyle: LineStyle(color: Theme.of(context).primaryColor.withOpacity(0.3), thickness: 2), // Use primary color with 30% opacity for the line
+                              indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.done, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(1), padding: EdgeInsets.all(10)), // 40% smaller, primary color fill with 30% opacity, white icon
+                              beforeLineStyle: LineStyle(color: Theme.of(context).primaryColor.withOpacity(0.5), thickness: 3), // Use primary color with 30% opacity for the line
                               endChild: Padding(
                                 padding: EdgeInsets.all(8.0), // Add padding to the tile icon
                                 child: OnboardingDietaryDelivery(
@@ -165,8 +165,8 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                               alignment: TimelineAlign.manual,
                               lineXY: 0.1,
                               isLast: true,
-                              indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.done, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(0.3), padding: EdgeInsets.all(5)), // 40% smaller, primary color fill with 30% opacity, white icon
-                              beforeLineStyle: LineStyle(color: Theme.of(context).primaryColor.withOpacity(0.3), thickness: 2), // Use primary color with 30% opacity for the line
+                              indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.done, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(1), padding: EdgeInsets.all(10)), // 40% smaller, primary color fill with 30% opacity, white icon
+                              beforeLineStyle: LineStyle(color: Theme.of(context).primaryColor.withOpacity(0.5), thickness: 3), // Use primary color with 30% opacity for the line
                               endChild: Padding(
                                 padding: EdgeInsets.all(8.0), // Add padding to the tile icon
                                 child: OnboardingPreferencesFinalize(
@@ -204,22 +204,39 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min, // Use minimum space vertically
           children: [
+            // Progress indicator
+            ClipRRect( // Clip widget with rounded corners
+              borderRadius: BorderRadius.circular(10), // Rounded corners with radius of 10
+              child: SizedBox(
+                height: 10, // Custom height for the progress indicator
+                width: MediaQuery.of(context).size.width * 0.70, // 80% of the device width
+                child: LinearProgressIndicator(
+                  value: (_currentStep + 1) / 3, // Calculate the progress
+                  valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor), // Use the primary color
+                  backgroundColor: Theme.of(context).primaryColor.withOpacity(0.3), // Use the primary color with 30% opacity
+                ),
+              ),
+            ),
+            SizedBox(height: 30), // Add some spacing between the progress indicator and the buttons
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.70, // 70% of the device width
+            width: MediaQuery.of(context).size.width * 0.75, // 70% of the device width
+            child: Opacity(
+              opacity: _currentStep >= 2 ? 1.0 : 0.3, // The button is 50% opaque when _currentStep is less than 2
               child: ElevatedButton(
-                onPressed: _savePreferences,
+                onPressed: _currentStep >= 2 ? _savePreferences : null, // The button is inactive until _currentStep is 2 or greater
                 child: Text('Save Preferences', style: TextStyle(color: Colors.white)), // White label
                 style: Theme.of(context).elevatedButtonTheme.style, // Get styling from custom_theme.dart
               ),
             ),
+            ),
             SizedBox(height: 10), // Add some spacing between the buttons
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.70, // 70%
-                            child: OutlinedButton(
+              width: MediaQuery.of(context).size.width * 0.75, // 70% of the device width
+              child: OutlinedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/learn_more');
                 },
-                child: Text('Continue Later'),
+                child: Text('Stash this for Later'),
                 style: Theme.of(context).outlinedButtonTheme.style, // Get styling from custom_theme.dart
               ),
             ),
