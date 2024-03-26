@@ -77,36 +77,36 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
       body: Stack(
         children: [
           Positioned(
-            top: 0.07 * MediaQuery.of(context).size.height, // 7% distance from the top edge of the screen
-            left: 0.05 * MediaQuery.of(context).size.width, // 5% distance from the left edge of the screen
+            top: 0.065 * MediaQuery.of(context).size.height, // 5% distance from the top edge of the screen
+            left: 0.02 * MediaQuery.of(context).size.width, // 2% distance from the left edge of the screen
             child: Container(
-              width: 0.45 * 0.75 * MediaQuery.of(context).size.width, // 45% of the current size
-              height: 0.45 * 0.75 * MediaQuery.of(context).size.width, // 45% of the current size
+              width: 0.45 * 0.65 * MediaQuery.of(context).size.width, // 45% of the current size
+              height: 0.45 * 0.65 * MediaQuery.of(context).size.width, // 45% of the current size
               child: Image.asset(
                 'assets/logos/crevify_iconmark_mini.webp',
-                height: 90,
+                height: 85,
               ),
             ),
           ),
           if (!_showNavigation) ...[
             SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.21), // 21% distance from the top edge of the screen
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.17), // 18% distance from the top edge of the screen
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
                     children: [
-                      SizedBox(height: 20), // Add space between logo and title
+                      SizedBox(height: 18), // Add space between logo and title
                       Padding(
-                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.10), // 10% distance from the left edge of the screen
+                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03), // 10% distance from the left edge of the screen
                         child: Text(
                           'Your Flavor Profile',
-                          style: Theme.of(context).textTheme.headlineLarge, // Get styling from custom_theme.dart and reduce font size to 13
+                          style: Theme.of(context).textTheme.headlineLarge,
                         ),
                       ),
-                      SizedBox(height: 10), // Add some spacing between the texts
+                      SizedBox(height: 8), // Add some spacing between the texts
                       Padding(
-                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.10), // 10% distance from the left edge of the screen
+                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.035), // 10% distance from the left edge of the screen
                         child: Text(
                           'Let\'s Craft Your Food Adventure!',
                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 13), // Get styling from custom_theme.dart and reduce font size to 13
@@ -115,7 +115,7 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                       // Timeline Step 1
                       if (_currentStep >= 0) // Only show this tile if the current step is 0 or greater
                         Padding(
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05), // 5% distance from the left edge of the screen
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.00), // 5% distance from the left edge of the screen
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.90, // 90% of the device width
                             child: TimelineTile(
@@ -123,9 +123,9 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                               lineXY: 0.1,
                               isFirst: true,
                               indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.person, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(1), padding: EdgeInsets.all(10)), // 40% smaller, primary color fill with 30% opacity, white icon
-                              beforeLineStyle: LineStyle(color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), thickness: 3), // Use primary color with 30% opacity for the line
+                              beforeLineStyle: LineStyle(color: Theme.of(context).primaryColor.withOpacity(0.5), thickness: 3), // Use primary color with 30% opacity for the line
                               endChild: Padding(
-                                padding: EdgeInsets.all(8.0), // Add padding to the tile icon
+                                padding: EdgeInsets.all(10), // Add padding to the tile icon
                                 child: OnboardingWelcomeDetails(
                                   _selectedPreferences,
                                   _togglePreference,
@@ -137,7 +137,7 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                       // Timeline Step 2
                       if (_currentStep >= 1) // Only show this tile if the current step is 1 or greater
                         Padding(
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05), // 5% distance from the left edge of the screen
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02), // 5% distance from the left edge of the screen
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.90, // 90% of the device width
                             child: TimelineTile(
@@ -146,7 +146,7 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                               indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.done, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(1), padding: EdgeInsets.all(10)), // 40% smaller, primary color fill with 30% opacity, white icon
                               beforeLineStyle: LineStyle(color: Theme.of(context).primaryColor.withOpacity(0.5), thickness: 3), // Use primary color with 30% opacity for the line
                               endChild: Padding(
-                                padding: EdgeInsets.all(8.0), // Add padding to the tile icon
+                                padding: EdgeInsets.all(10), // Add padding to the tile icon
                                 child: OnboardingDietaryDelivery(
                                   _selectedPreferences,
                                   _togglePreference,
@@ -158,7 +158,7 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                       // Timeline Step 3
                       if (_currentStep >= 2) // Only show this tile if the current step is 2 or greater
                         Padding(
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05), // 5% distance from the left edge of the screen
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02), // 5% distance from the left edge of the screen
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.90, // 90% of the device width
                             child: TimelineTile(
@@ -168,7 +168,7 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                               indicatorStyle: IndicatorStyle(width: 60 * 0.60, iconStyle: IconStyle(iconData: Icons.done, color: iconColor), color: Theme.of(context).primaryColor.withOpacity(1), padding: EdgeInsets.all(10)), // 40% smaller, primary color fill with 30% opacity, white icon
                               beforeLineStyle: LineStyle(color: Theme.of(context).primaryColor.withOpacity(0.5), thickness: 3), // Use primary color with 30% opacity for the line
                               endChild: Padding(
-                                padding: EdgeInsets.all(8.0), // Add padding to the tile icon
+                                padding: EdgeInsets.all(10), // Add padding to the tile icon
                                 child: OnboardingPreferencesFinalize(
                                   _selectedPreferences,
                                   _togglePreference,

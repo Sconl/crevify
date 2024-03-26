@@ -90,7 +90,7 @@ class _SignupSuccessModalState extends State<SignupSuccessModal> {
                     minBlastForce: 100, // set a higher min blast force
                     emissionFrequency: 0.2, // increase the emission frequency
                     numberOfParticles: 20, // number of particles to emit
-                    gravity: 0.7, // reduce the gravity slightly
+                    gravity: 0.5, // reduce the gravity slightly
                     particleDrag: 0.05, // apply drag to the confetti
                     colors: [Colors.green, Colors.blue, Colors.pink], // manually specify the colors to be used
                   ),
@@ -100,10 +100,10 @@ class _SignupSuccessModalState extends State<SignupSuccessModal> {
                     maxBlastForce: 200, // set a higher max blast force
                     minBlastForce: 100, // set a higher min blast force
                     emissionFrequency: 0.2, // increase the emission frequency
-                    numberOfParticles: 20, // number of particles to emit
-                    gravity: 0.7, // reduce the gravity slightly
+                    numberOfParticles: 15, // number of particles to emit
+                    gravity: 0.5, // reduce the gravity slightly
                     particleDrag: 0.05, // apply drag to the confetti
-                    colors: [Colors.green, Colors.blue, Colors.pink], // manually specify the colors to be used
+                    colors: [Colors.green, Colors.yellow, Color.fromARGB(255, 253, 73, 2)], // manually specify the colors to be used
                   ),
                 ],
               ),
