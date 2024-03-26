@@ -11,7 +11,7 @@ import 'package:custom_appbar/custom_appbar.dart'; // Import custom_appbar packa
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:crevify/features/loading_screen/screens/loading_screen.dart'; // Import LoadingScreen widget
 import '../../splash_screen/bloc/splash_bloc/splash_bloc.dart'; // Import SplashBloc
-import '../../user_preferences/screens/user_preferences.dart';
+import '../../user_preferences/screens/user_preferences_screen.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
