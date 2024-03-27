@@ -2,15 +2,15 @@
 // Author: Sconl Peter
 // Email: sconl@proton.me
 // Description: User preferences screen
+// Date: Monday, 25 March 2024
 
-//import 'package:crevify/shared/theme/custom_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/user_preferences_service.dart';
 import '../models/user_preferences_model.dart';
-import 'user_preferences_timeline.dart';
-import 'user_preferences_buttons.dart';
+import '../widgets/user_preferences_buttons.dart';
 import '../widgets/signup_success_modal.dart'; // Import the modal
+import '../widgets/user_preferences_timeline.dart';
 
 class UserPreferencesScreen extends StatefulWidget {
   final User user;
@@ -56,53 +56,52 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      showDialog(
-        context: context,
-        builder: (context) => SignupSuccessModal(), // Display the modal
-      );
+      if (mounted) { // Check if the widget is still in the tree
+        showDialog(
+          context: context,
+          builder: (context) => SignupSuccessModal(), // Display the modal
+        );
+      }
     });
   }
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Positioned(
-              top: 0.07 * MediaQuery.of(context).size.height, // 7% distance from the top edge of the screen
-              left: 0.02 * MediaQuery.of(context).size.width, // 2% distance from the left edge of the screen
-              child: Container(
-                width: 0.45 * 0.65 * MediaQuery.of(context).size.width, // 45% of the current size
-                height: 0.45 * 0.65 * MediaQuery.of(context).size.width, // 45% of the current size
-                child: Image.asset(
-                  'assets/logos/crevify_iconmark_mini.webp',
-                  height: 85,
-                ),
+      body: SingleChildScrollView( // Wrap the Column with SingleChildScrollView
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 16.0, // 16 points padding on the left
+            right: 16.0, // 16 points padding on the right
+            top: 24.0, // 24 points padding on the top
+            bottom: 24.0, // 24 points padding on the bottom
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 16.0), // 2 units of 8 points each
+              Image.asset(
+                'assets/logos/crevify_iconmark_mini.webp',
+                height: MediaQuery.of(context).size.height * 0.20, // 20% of the screen height
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.17 + 10), // 18% distance from the top edge of the screen + 10 units
-              child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
-                  children: [
-                    SizedBox(height: 18), // Add space between logo and title
-                    Padding(
-                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03), // 10% distance from the left edge of the screen
-                      child: Text(
-                        'Your Flavor Profile',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                    ),
-                    SizedBox(height: 10), // Add some spacing between the texts
-                    UserPreferencesTimeline(_selectedPreferences, _togglePreference, _savePreferences),
-                    UserPreferencesButtons(_currentStep, _savePreferences),
-                  ],
-                ),
+              SizedBox(height: 16.0), // 2 units of 8 points each
+              Text(
+                'Your Flavor Profile',
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
-            ),
-          ],
+              SizedBox(height: 16.0), // 2 units of 8 points each
+              Text(
+                'Placeholder Subhead Copy',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              SizedBox(height: 16.0), // 2 units of 8 points each
+              Container(
+                height: 200, // Set a fixed height for the ListView
+                child: UserPreferencesTimeline(_selectedPreferences, _togglePreference, _savePreferences),
+              ),
+              SizedBox(height: 16.0), // 2 units of 8 points each
+              UserPreferencesButtons(_currentStep, _savePreferences),
+            ],
+          ),
         ),
       ),
     );

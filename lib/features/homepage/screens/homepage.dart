@@ -124,7 +124,7 @@ class _CustomShapePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
-      ..color = MyTheme.lightTheme.primaryColor // Set the color of the custom shape to the primary color
+      ..color = CustomTheme.lightTheme.primaryColor // Set the color of the custom shape to the primary color
       ..style = PaintingStyle.fill;
 
     var path = Path()

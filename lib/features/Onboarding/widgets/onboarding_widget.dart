@@ -87,7 +87,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                         dotWidth: 10,
                         dotHeight: 10,
                         dotColor: Color(0xFFD9D9D9),
-                        activeDotColor: MyTheme.lightTheme.primaryColor,
+                        activeDotColor: CustomTheme.lightTheme.primaryColor,
                         paintStyle: PaintingStyle.fill,
                       ),
                     ),
@@ -105,7 +105,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
               onPressed: () async {
                 Navigator.pushNamed(context, '/login');
               },
-              style: MyTheme.lightTheme.elevatedButtonTheme.style,
+              style: CustomTheme.lightTheme.elevatedButtonTheme.style,
               child: const Text(
                 'Ready, Set, Go!',
                 style: TextStyle(
@@ -125,49 +125,49 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                 TyperAnimatedText(
                   'Chop it up!',
                   textStyle: TextStyle(
-                    color: MyTheme.lightTheme.primaryColor,
+                    color: CustomTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Whisk it away!',
                   textStyle: TextStyle(
-                    color: MyTheme.lightTheme.primaryColor,
+                    color: CustomTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Savor the flavor!',
                   textStyle: TextStyle(
-                    color: MyTheme.lightTheme.primaryColor,
+                    color: CustomTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Slice and dice!',
                   textStyle: TextStyle(
-                    color: MyTheme.lightTheme.primaryColor,
+                    color: CustomTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Cook with passion!',
                   textStyle: TextStyle(
-                    color: MyTheme.lightTheme.primaryColor,
+                    color: CustomTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Taste the magic!',
                   textStyle: TextStyle(
-                    color: MyTheme.lightTheme.primaryColor,
+                    color: CustomTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
                 TyperAnimatedText(
                   'Spice it up!',
                   textStyle: TextStyle(
-                    color: MyTheme.lightTheme.primaryColor,
+                    color: CustomTheme.lightTheme.primaryColor,
                   ),
                   speed: const Duration(milliseconds: 150), // Reduce speed
                 ),
@@ -208,7 +208,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: MyTheme.lightTheme.textTheme.headlineLarge?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
+              style: CustomTheme.lightTheme.textTheme.headlineLarge?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 10),
             Padding(
@@ -216,7 +216,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
               child: Text(
                 subtitle,
                 textAlign: TextAlign.center,
-                style: MyTheme.lightTheme.textTheme.bodyLarge?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
+                style: CustomTheme.lightTheme.textTheme.bodyLarge?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
               ),
             ),
             const SizedBox(height: 20),

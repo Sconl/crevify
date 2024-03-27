@@ -44,7 +44,7 @@ class _SplashWidgetState extends State<SplashWidget> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final theme = MediaQuery.platformBrightnessOf(context) == Brightness.dark ? MyTheme.darkTheme : MyTheme.lightTheme;
+    final theme = MediaQuery.platformBrightnessOf(context) == Brightness.dark ? CustomTheme.darkTheme : CustomTheme.lightTheme;
     return Scaffold(
       backgroundColor: theme.colorScheme.background, // Set background based on theme
       body: Stack( // Use Stack to overlay widgets

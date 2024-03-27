@@ -11,7 +11,7 @@ const Color secondaryColor = Color(0xFFEF3300);
 const Color lightBackgroundColor = Color(0xFFFDFFF5);
 const Color darkBackgroundColor = Color(0xFF001E00);
 
-class MyTheme {
+class CustomTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: primaryColor,

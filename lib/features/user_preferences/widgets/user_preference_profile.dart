@@ -1,7 +1,8 @@
-// File: onboarding_welcome_details.dart
+// File: user_preference_profile.dart
 // Author: Sconl Peter
 // Email: sconl@proton.me
-// Description: This file contains the OnboardingWelcomeDetails widget.
+// Description: This file contains the UserPreferenceProfile widget.
+// Date: Monday, 25 March 2024
 
 import 'dart:io'; // Import dart:io to use the File class
 import 'package:flutter/material.dart';
@@ -9,17 +10,17 @@ import 'package:image_picker/image_picker.dart'; // Import image_picker package
 import 'package:flutter/services.dart'; // Import services for TextInputFormatter
 import '../../../shared/theme/custom_theme.dart'; // Import custom theme
 
-class OnboardingWelcomeDetails extends StatefulWidget {
+class UserPreferenceProfile extends StatefulWidget {
   final List<String> selectedPreferences;
   final Function(String) togglePreference;
 
-  OnboardingWelcomeDetails(this.selectedPreferences, this.togglePreference);
+  UserPreferenceProfile(this.selectedPreferences, this.togglePreference);
 
   @override
-  _OnboardingWelcomeDetailsState createState() => _OnboardingWelcomeDetailsState();
+  _UserPreferenceProfileState createState() => _UserPreferenceProfileState();
 }
 
-class _OnboardingWelcomeDetailsState extends State<OnboardingWelcomeDetails> {
+class _UserPreferenceProfileState extends State<UserPreferenceProfile> {
   late TextEditingController _usernameController;
   late TextEditingController _phoneNumberController;
   late DateTime _selectedDate;
@@ -85,13 +86,13 @@ class _OnboardingWelcomeDetailsState extends State<OnboardingWelcomeDetails> {
         width: MediaQuery.of(context).size.width * 0.9, // 90% of the container width
         child: Column(
           children: [
-            SizedBox(height: 5), // Reduce some space
+            SizedBox(height: 8.0), // 8 points spacing
             Text(
               'Account & Profile',
               style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontSize: 24), // Increase font size
               textAlign: TextAlign.center, // Align text to the center
             ),
-            SizedBox(height: 5), // Reduce some space
+            SizedBox(height: 8.0), // 8 points spacing
             Text(
               'Profile Pic (Show Us Your Yum)',
               style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Theme.of(context).primaryColor, fontSize: 12), // Reduce font size and set color to primary color

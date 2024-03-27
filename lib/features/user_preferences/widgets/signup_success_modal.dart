@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
-//import '../../../shared/theme/custom_theme.dart';
+import '../../../shared/theme/custom_theme.dart';
 
 class SignupSuccessModal extends StatefulWidget {
   @override
@@ -92,7 +92,7 @@ class _SignupSuccessModalState extends State<SignupSuccessModal> {
                     numberOfParticles: 20, // number of particles to emit
                     gravity: 0.5, // reduce the gravity slightly
                     particleDrag: 0.05, // apply drag to the confetti
-                    colors: [Colors.green, Colors.blue, Colors.pink], // manually specify the colors to be used
+                    colors: [Colors.green, Colors.blue, Color.fromARGB(255, 255, 0, 0)], // manually specify the colors to be used
                   ),
                   ConfettiWidget(
                     confettiController: _controllerRight,

@@ -23,11 +23,11 @@ import 'features/Onboarding/screens/learn_more.dart'; // Import your LearnMorePa
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized(); 
-  runApp(const MyApp());
+  runApp(const Crevify());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+class Crevify extends StatelessWidget {
+  const Crevify({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             create: (context) => AuthBloc(AuthenticationService(FirebaseAuth.instance)),
             child: MaterialApp(
               title: 'Crevify',
-              theme: MediaQuery.platformBrightnessOf(context) == Brightness.dark ? MyTheme.darkTheme : MyTheme.lightTheme,
+              theme: MediaQuery.platformBrightnessOf(context) == Brightness.dark ? CustomTheme.darkTheme : CustomTheme.lightTheme,
               home: BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) {
                   if (state is AuthInitial) {
